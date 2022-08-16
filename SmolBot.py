@@ -68,14 +68,14 @@ async def _(ctx):
     """Respond with a link to SydneyMGames clip"""
     log_command(ctx, 'bois')
     embed = discord.Embed(**config['bois'])
-    await ctx.send(embed=embed)
+    await ctx.message.reply(embed=embed)
     
 @smolbot.command(name='scuse')
 async def _(ctx):
     """Respond with a link to SydneyMGames clip"""
     log_command(ctx, 'scuse')
     embed = discord.Embed(**config['scuse'])
-    await ctx.send(embed=embed)
+    await ctx.message.reply(embed=embed)
     
 @smolbot.command(name='reset_config')
 async def _(ctx):
@@ -126,7 +126,7 @@ async def _(ctx):
                           title='Ciri',
                           description='Have a free ciri photo!')
     embed.set_image(url="attachment://ciri.png")
-    await ctx.send(file=file, embed=embed)
+    await ctx.message.reply(file=file, embed=embed)
 
 @smolbot.command(name='cool')
 async def _cool(ctx):
