@@ -41,17 +41,25 @@ file.setLevel(logging.DEBUG)
 file.setFormatter(formatter)
 logger.addHandler(file)    
 
+# Have to create bot instance here, for .command/.event dectorators.
+# An instance is required, as it has to pass "self" into it.
+# See discord.py API on this
+smolbot = commands.Bot(command_prefix=BOT_PREFIX, logger=logger)
 
 def log_command(ctx, command_name: str, *, level: int = logging.DEBUG):
-    logger.log(level=level, msg='%s called %s command' %
+    logger.log(level=level, msg='%s called: "%s"' %
                (str(ctx.author), command_name))
-
-smolbot = commands.Bot(command_prefix=BOT_PREFIX, logger=logger)
 
 @smolbot.event
 async def on_ready():
-    logger.info('SmolBot is now ONLINE!')
-
+    logger.info('SmolBot is now online!')
+    
+@smolbot.command(name='ping')
+async def _(ctx):
+    """Ping smolbot to check its status"""
+    log_command(ctx, 'ping')
+    await ctx.message.reply(config['ping']['response'])
+    
 @smolbot.command(name='bois')
 async def _(ctx):
     log_command(ctx, 'bois')
