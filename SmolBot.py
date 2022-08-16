@@ -85,13 +85,28 @@ async def _(ctx):
     await ctx.message.add_reaction('✅')
 
 
-@smolbot.command(name='help me')
+@smolbot.command(name='help')
 async def _(ctx):
-    log_command(ctx, 'help_me')
+    log_command(ctx, 'help')
+    message = """Hello, You asked for some help.
+    
+    I am a very smol bot (🤖), you can call me SmolBot.
+    
+    Currently, these are the commands you can call:
+        !bois - Link to Sydney's clip
+        !scuse - Link to another Sydney clip
+        !ping - Check i am awake
+        !ciri - Get a random picture of Ciri
+        !cool - Find out how cool you are
+        !suggest - Send a suggestion for a change to SmolBot
+        
+    If you have questions / issues, just let SmolTygr know.
+    """
+    await ctx.message.reply(message)
 
 @smolbot.command(name='ciri')
 async def _(ctx):
-    log_command(ctx, 'reset_config')
+    log_command(ctx, 'ciri')
     
     # Get a random .png from Ciri folder
     images = os.listdir(os.path.join(DIR_, 'ciri'))
