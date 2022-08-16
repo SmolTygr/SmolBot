@@ -137,7 +137,7 @@ async def _(ctx):
              'soap', 'blow', 'bwah')
 
     clip = clips[random.randint(0, len(clips)-1)]
-    embed = discord.Embed(**config['clip'])
+    embed = discord.Embed(**config[clip])
     await ctx.message.reply(embed=embed)
 
 @smolbot.command(name='reset_config')
