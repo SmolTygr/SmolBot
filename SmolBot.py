@@ -41,6 +41,11 @@ file.setLevel(logging.DEBUG)
 file.setFormatter(formatter)
 logger.addHandler(file)    
 
+
+def log_command(ctx, command_name: str, *, level: int = logging.DEBUG):
+    logger.log(level=level, msg='%s called %s command' %
+               (str(ctx.author), command_name))
+
 smolbot = commands.Bot(command_prefix=BOT_PREFIX, logger=logger)
 
 @smolbot.event
@@ -49,7 +54,7 @@ async def on_ready():
 
 @smolbot.command(name='bois')
 async def _(ctx):
-    logger.debug('%s has called the cool command', str(ctx.author))
+    log_command(ctx, 'bois')
 
     embed = discord.Embed(author=config['cool']['author'],
                           title=config['cool']['title'],
@@ -59,7 +64,7 @@ async def _(ctx):
     
 @smolbot.command(name='reset_config')
 async def _(ctx):
-    logger.debug('%s has called the reset_config command', str(ctx.author))
+    log_command(ctx, 'reset_config')
     
     allowed_users = config['reset_config']['allowed_users'].split(sep=', ')
     if str(ctx.author)[:-5] not in allowed_users:
@@ -71,9 +76,14 @@ async def _(ctx):
     logger.info('Config.ini re-read!')
     await ctx.message.add_reaction('✅')
 
+
+@smolbot.command(name='help me')
+async def _(ctx):
+    log_command(ctx, 'help_me')
+
 @smolbot.command(name='ciri')
 async def _(ctx):
-    logger.debug('%s has called Ciri command', str(ctx.author))
+    log_command(ctx, 'reset_config')
     
     # Get a random .png from Ciri folder
     images = os.listdir(os.path.join(DIR_, 'ciri'))
@@ -91,6 +101,7 @@ async def _(ctx):
 
 @smolbot.command(name='cool')
 async def _cool(ctx):
+    log_command(ctx, 'cool')
 
     if str(ctx.author)[:-5] == 'Smol_Tygr':
         await ctx.send('Smol is the coolest. No need to even check')
@@ -119,6 +130,8 @@ async def _cool(ctx):
 
 @smolbot.command(name='suggest')
 async def _(ctx):
+    log_command(ctx, 'suggest')
+
     # Suggestion / idea chnnael on A Smol Server
     channel = smolbot.get_channel(1008099482229031042)
 
@@ -126,6 +139,8 @@ async def _(ctx):
     message = str(ctx.message.content)[9:]
     await channel.send(f'{ctx.author.mention} has suggested: {message}')
     await ctx.message.reply('Thank you for the suggestion. It has been sent to A Smol Server')
+
+
 
 
 # @smol_bot.listen('on_message')
