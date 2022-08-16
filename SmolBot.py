@@ -158,7 +158,7 @@ async def _(ctx):
 @smolbot.command(name='clips')
 async def _(ctx):
     """Send a list of clip commands"""
-    log_command(ctx, 'smol_help')
+    log_command(ctx, 'clips')
 
     message = """Some amazing clips from the best streamers:
         !bois
@@ -173,6 +173,7 @@ async def _(ctx):
     If you want a random one:
         !random_clip
     """
+    await ctx.message.reply(message)
 
 
 @smolbot.command(name='smol_help')
