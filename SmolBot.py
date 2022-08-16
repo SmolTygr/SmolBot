@@ -62,21 +62,31 @@ async def _(ctx):
     """Ping smolbot to check its status"""
     log_command(ctx, 'ping')
     await ctx.message.reply(config['ping']['response'])
-    
+
+
 @smolbot.command(name='bois')
 async def _(ctx):
     """Respond with a link to SydneyMGames clip"""
     log_command(ctx, 'bois')
     embed = discord.Embed(**config['bois'])
     await ctx.message.reply(embed=embed)
-    
+
+
 @smolbot.command(name='scuse')
 async def _(ctx):
     """Respond with a link to SydneyMGames clip"""
     log_command(ctx, 'scuse')
     embed = discord.Embed(**config['scuse'])
     await ctx.message.reply(embed=embed)
-    
+
+
+@smolbot.command(name='dolphin')
+async def _(ctx):
+    """Respond with a link to BirdyRage clip"""
+    log_command(ctx, 'dolphin')
+    embed = discord.Embed(**config['dolphin'])
+    await ctx.message.reply(embed=embed)
+
 @smolbot.command(name='reset_config')
 async def _(ctx):
     log_command(ctx, 'reset_config')
