@@ -70,6 +70,13 @@ async def _(ctx):
     embed = discord.Embed(**config['bois'])
     await ctx.send(embed=embed)
     
+@smolbot.command(name='scuse')
+async def _(ctx):
+    """Respond with a link to SydneyMGames clip"""
+    log_command(ctx, 'scuse')
+    embed = discord.Embed(**config['scuse'])
+    await ctx.send(embed=embed)
+    
 @smolbot.command(name='reset_config')
 async def _(ctx):
     log_command(ctx, 'reset_config')
@@ -88,21 +95,19 @@ async def _(ctx):
 @smolbot.command(name='smol_help')
 async def _(ctx):
     log_command(ctx, 'smol_help')
-    message = """Hello, You asked for some smol help.
+    message = """Hello, I am a very smol bot (🤖), you can call me SmolBot.
     
-    I am a very smol bot (🤖), you can call me SmolBot.
+Currently, these are the commands you can call:
+    !smol help - This command :)
+    !bois - Link to Sydney's clip
+    !scuse - Link to another Sydney clip
+    !ping - Check i am awake
+    !ciri - Get a random picture of Ciri
+    !cool - Find out how cool you are
+    !suggest - Send a suggestion for a change to SmolBot
     
-    Currently, these are the commands you can call:
-        !smol help - This command :)
-        !bois - Link to Sydney's clip
-        !scuse - Link to another Sydney clip
-        !ping - Check i am awake
-        !ciri - Get a random picture of Ciri
-        !cool - Find out how cool you are
-        !suggest - Send a suggestion for a change to SmolBot
-        
-    If you have questions / issues, just let SmolTygr know.
-    """
+If you have questions / issues, just let SmolTygr know.
+"""
     await ctx.message.reply(message)
 
 @smolbot.command(name='ciri')
