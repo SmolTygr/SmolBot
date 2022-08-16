@@ -46,12 +46,15 @@ logger.addHandler(file)
 # See discord.py API on this
 smolbot = commands.Bot(command_prefix=BOT_PREFIX, logger=logger)
 
+#TODO: Rewrite as a wrapper function.
 def log_command(ctx, command_name: str, *, level: int = logging.DEBUG):
+    """Basic logging for when a user calls a command"""
     logger.log(level=level, msg='%s called: "%s"' %
                (str(ctx.author), command_name))
 
 @smolbot.event
 async def on_ready():
+    """Perform actions when bot comes online"""
     logger.info('SmolBot is now online!')
     
 @smolbot.command(name='ping')
@@ -62,12 +65,9 @@ async def _(ctx):
     
 @smolbot.command(name='bois')
 async def _(ctx):
+    """Respond with a link to SydneyMGames clip"""
     log_command(ctx, 'bois')
-
-    embed = discord.Embed(author=config['cool']['author'],
-                          title=config['cool']['title'],
-                          description=config['cool']['description'],
-                          url=config['cool']['url']) 
+    embed = discord.Embed(**config['bois'])
     await ctx.send(embed=embed)
     
 @smolbot.command(name='reset_config')
