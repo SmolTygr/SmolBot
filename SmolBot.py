@@ -99,8 +99,8 @@ async def _(ctx):
 @smolbot.command(name='batman')
 async def _(ctx):
     """Respond with a link to BirdyRage clip"""
-    log_command(ctx, 'brenky')
-    embed = discord.Embed(**config['brenky'])
+    log_command(ctx, 'batman')
+    embed = discord.Embed(**config['batman'])
     await ctx.message.reply(embed=embed)
 
 @smolbot.command(name='reset_config')
