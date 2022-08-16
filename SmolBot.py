@@ -67,7 +67,7 @@ async def _(ctx):
 async def _(ctx):
     """Respond with a link to SydneyMGames clip"""
     log_command(ctx, 'bois')
-    embed = discord.Embed(**config['bois'])
+    embed = discord.Embed(*config['bois'])
     await ctx.send(embed=embed)
     
 @smolbot.command(name='reset_config')
