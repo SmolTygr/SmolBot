@@ -87,6 +87,22 @@ async def _(ctx):
     embed = discord.Embed(**config['dolphin'])
     await ctx.message.reply(embed=embed)
 
+
+@smolbot.command(name='brenky')
+async def _(ctx):
+    """Respond with a link to BirdyRage clip"""
+    log_command(ctx, 'brenky')
+    embed = discord.Embed(**config['brenky'])
+    await ctx.message.reply(embed=embed)
+
+
+@smolbot.command(name='batman')
+async def _(ctx):
+    """Respond with a link to BirdyRage clip"""
+    log_command(ctx, 'brenky')
+    embed = discord.Embed(**config['brenky'])
+    await ctx.message.reply(embed=embed)
+
 @smolbot.command(name='reset_config')
 async def _(ctx):
     log_command(ctx, 'reset_config')
