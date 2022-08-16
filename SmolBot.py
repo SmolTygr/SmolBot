@@ -85,14 +85,15 @@ async def _(ctx):
     await ctx.message.add_reaction('✅')
 
 
-@smolbot.command(name='help')
+@smolbot.command(name='smol_help')
 async def _(ctx):
-    log_command(ctx, 'help')
-    message = """Hello, You asked for some help.
+    log_command(ctx, 'smol_help')
+    message = """Hello, You asked for some smol help.
     
     I am a very smol bot (🤖), you can call me SmolBot.
     
     Currently, these are the commands you can call:
+        !smol help - This command :)
         !bois - Link to Sydney's clip
         !scuse - Link to another Sydney clip
         !ping - Check i am awake
