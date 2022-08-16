@@ -112,6 +112,34 @@ async def _(ctx):
     await ctx.message.reply(embed=embed)
 
 
+@smolbot.command(name='blow')
+async def _(ctx):
+    """Respond with a link to BirdyRage clip"""
+    log_command(ctx, 'blow')
+    embed = discord.Embed(**config['blow'])
+    await ctx.message.reply(embed=embed)
+
+
+@smolbot.command(name='bwah')
+async def _(ctx):
+    """Respond with a link to BirdyRage clip"""
+    log_command(ctx, 'bwah')
+    embed = discord.Embed(**config['bwah'])
+    await ctx.message.reply(embed=embed)
+
+
+@smolbot.command(name='random_clip')
+async def _(ctx):
+    """Respond with a random clip"""
+    log_command(ctx, 'random_clip')
+
+    clips = ('bois', 'scuse', 'brenky', 'dolphin', 'batman',
+             'soap', 'blow', 'bwah')
+
+    clip = clips[random.randint(0, len(clips)-1)]
+    embed = discord.Embed(**config['clip'])
+    await ctx.message.reply(embed=embed)
+
 @smolbot.command(name='reset_config')
 async def _(ctx):
     log_command(ctx, 'reset_config')
@@ -127,6 +155,26 @@ async def _(ctx):
     await ctx.message.add_reaction('✅')
 
 
+@smolbot.command(name='clips')
+async def _(ctx):
+    """Send a list of clip commands"""
+    log_command(ctx, 'smol_help')
+
+    message = """Some amazing clips from the best streamers:
+        !bois
+        !scuse
+        !brenky
+        !dolphin
+        !batman
+        !soap
+        !blow
+        !bwah
+        
+    If you want a random one:
+        !random_clip
+    """
+
+
 @smolbot.command(name='smol_help')
 async def _(ctx):
     log_command(ctx, 'smol_help')
@@ -134,8 +182,7 @@ async def _(ctx):
     
 Currently, these are the commands you can call:
     !smol help - This command :)
-    !bois - Link to Sydney's clip
-    !scuse - Link to another Sydney clip
+    !clips - Get a list of great twitch clips commands
     !ping - Check i am awake
     !ciri - Get a random picture of Ciri
     !cool - Find out how cool you are
