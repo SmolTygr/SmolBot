@@ -39,13 +39,13 @@ async def on_ready():
 @smolbot.command(name='ping')
 async def _(ctx):
     """Ping smolbot to check its status"""
-    log_command(ctx, 'ping')
+    log_command(ctx, logger, 'ping')
     await ctx.message.reply(config['ping']['response'])
 
 
 @smolbot.command(name='reset_config')
 async def _(ctx):
-    log_command(ctx, 'reset_config')
+    log_command(ctx, logger, 'reset_config')
 
     allowed_users = config['reset_config']['allowed_users'].split(sep=', ')
     if str(ctx.author)[:-5] not in allowed_users:
@@ -61,7 +61,7 @@ async def _(ctx):
 @smolbot.command(name='clips')
 async def _(ctx):
     """Send a list of clip commands"""
-    log_command(ctx, 'clips')
+    log_command(ctx, logger, 'clips')
 
     message = """Some amazing clips from the best streamers:
         !bois
@@ -81,7 +81,7 @@ async def _(ctx):
 
 @smolbot.command(name='smol_help')
 async def _(ctx):
-    log_command(ctx, 'smol_help')
+    log_command(ctx,  logger, 'smol_help')
     message = """Hello, I am a very smol bot (🤖), you can call me SmolBot.
     
 Currently, these are the commands you can call:
@@ -99,7 +99,7 @@ If you have questions / issues, just let SmolTygr know.
 
 @smolbot.command(name='ciri')
 async def _(ctx):
-    log_command(ctx, 'ciri')
+    log_command(ctx, logger, 'ciri')
 
     # Get a random .png from Ciri folder
     images = os.listdir(os.path.join(DIR_, 'ciri'))
@@ -118,7 +118,7 @@ async def _(ctx):
 
 @smolbot.command(name='cool')
 async def _cool(ctx):
-    log_command(ctx, 'cool')
+    log_command(ctx, logger, 'cool')
 
     if str(ctx.author)[:-5] == 'Smol_Tygr':
         await ctx.send('Smol is the coolest. No need to even check')
@@ -147,7 +147,7 @@ async def _cool(ctx):
 
 @smolbot.command(name='suggest')
 async def _(ctx):
-    log_command(ctx, 'suggest')
+    log_command(ctx,  logger, 'suggest')
 
     # Suggestion / idea chnnael on A Smol Server
     channel = smolbot.get_channel(1008099482229031042)
