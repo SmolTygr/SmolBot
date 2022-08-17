@@ -13,9 +13,9 @@ class Clips(commands.Cog):
         self.logger = logger
         self.config = config
 
-    @commands.command()
-    async def test(self, ctx):
-        await ctx.message.reply('fuck off')
+    # @commands.command()
+    # async def test(self, ctx):
+    #     await ctx.message.reply('fuck off')
 
 
     @commands.command()

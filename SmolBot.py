@@ -31,10 +31,10 @@ smolbot.add_cog(clips.Clips(bot=smolbot, logger=logger, config=config))
 
 
 @smolbot.command()
-async def reload_cogs():
+async def reload_cogs(ctx):
     smolbot.remove_cog('Clips')
     smolbot.add_cog(clips.Clips(bot=smolbot, logger=logger, config=config))
-
+    await ctx.message.add_reaction('👍')
 
 @smolbot.event
 async def on_ready():
