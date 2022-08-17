@@ -51,6 +51,17 @@ def log_command(ctx, command_name: str, *, level: int = logging.DEBUG):
     """Basic logging for when a user calls a command"""
     logger.log(level=level, msg='%s called: "%s"' %
                (str(ctx.author), command_name))
+    
+class Clips(commands.Cog):
+    def __init__(self, bot):
+        self.bot = bot
+    
+    @commands.command()
+    async def bois(self, ctx):
+        """Respond with a link to SydneyMGames clip"""
+        log_command(ctx, 'bois')
+        embed = discord.Embed(**config['bois'])
+        await ctx.message.reply(embed=embed)       
 
 @smolbot.event
 async def on_ready():
@@ -62,14 +73,6 @@ async def _(ctx):
     """Ping smolbot to check its status"""
     log_command(ctx, 'ping')
     await ctx.message.reply(config['ping']['response'])
-
-
-@smolbot.command(name='bois')
-async def _(ctx):
-    """Respond with a link to SydneyMGames clip"""
-    log_command(ctx, 'bois')
-    embed = discord.Embed(**config['bois'])
-    await ctx.message.reply(embed=embed)
 
 
 @smolbot.command(name='scuse')
