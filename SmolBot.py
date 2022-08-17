@@ -27,7 +27,7 @@ config.read(config_path)
 # An instance is required, as it has to pass "self" into it.
 # See discord.py API on this
 smolbot = commands.Bot(command_prefix=BOT_PREFIX, logger=logger)
-smolbot.add_cog(clips.Clips(bot=smolbot, config=config))
+smolbot.add_cog(clips.Clips(bot=smolbot, logger=logger, config=config))
 
 
 @smolbot.event
