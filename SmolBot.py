@@ -30,6 +30,12 @@ smolbot = commands.Bot(command_prefix=BOT_PREFIX, logger=logger)
 smolbot.add_cog(clips.Clips(bot=smolbot, logger=logger, config=config))
 
 
+@smolbot.command()
+async def reload_cogs():
+    smolbot.remove_cog('Clips')
+    smolbot.add_cog(clips.Clips(bot=smolbot, logger=logger, config=config))
+
+
 @smolbot.event
 async def on_ready():
     """Perform actions when bot comes online"""
