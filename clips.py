@@ -23,7 +23,7 @@ class Clips(commands.Cog):
 
     @commands.command()
     async def test(self, ctx):
-        await ctx.message.reply('fuck off')
+        await ctx.message.reply('Oo. Ee. Ahh. BOIS')
 
     @commands.command()
     async def bois(self, ctx):
