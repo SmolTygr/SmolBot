@@ -44,7 +44,6 @@ async def on_ready():
 async def _(ctx):
     """Ping smolbot to check its status"""
     log_command(ctx, logger, 'ping')
-    await ctx.message.reply(config['ping']['response'])
     await ctx.message.add_reaction('👍')
 
 
