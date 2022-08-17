@@ -2,3 +2,4 @@ token.txt
 *.log
 *.png
 *.jpg
+classes.py
