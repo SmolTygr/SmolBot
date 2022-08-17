@@ -41,6 +41,7 @@ async def _(ctx):
     """Ping smolbot to check its status"""
     log_command(ctx, logger, 'ping')
     await ctx.message.reply(config['ping']['response'])
+    await ctx.message.add_reaction('👍')
 
 
 @smolbot.command(name='reset_config')
@@ -56,27 +57,6 @@ async def _(ctx):
     config.read(config_path)
     logger.info('Config.ini re-read!')
     await ctx.message.add_reaction('✅')
-
-
-@smolbot.command(name='clips')
-async def _(ctx):
-    """Send a list of clip commands"""
-    log_command(ctx, logger, 'clips')
-
-    message = """Some amazing clips from the best streamers:
-        !bois
-        !scuse
-        !brenky
-        !dolphin
-        !batman
-        !soap
-        !blow
-        !bwah
-        
-    If you want a random one:
-        !random_clip
-    """
-    await ctx.message.reply(message)
 
 
 @smolbot.command(name='smol_help')

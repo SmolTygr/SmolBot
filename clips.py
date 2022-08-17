@@ -72,3 +72,23 @@ class Clips(commands.Cog):
 
         clip = clips[random.randint(0, len(clips)-1)]
         await ctx.message.reply(self.config[clip]['url'])
+
+    @commands.command()
+    async def clips(self, ctx):
+        """Send a list of clip commands"""
+        log_command(ctx, self.logger, 'clips')
+
+        message = """Some amazing clips from the best streamers:
+            !bois
+            !scuse
+            !brenky
+            !dolphin
+            !batman
+            !soap
+            !blow
+            !bwah
+            
+        If you want a random one:
+            !random_clip
+        """
+        await ctx.message.reply(message)
