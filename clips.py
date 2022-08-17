@@ -17,8 +17,7 @@ class Clips(commands.Cog):
     async def bois(self, ctx):
         """Respond with a link to SydneyMGames clip"""
         log_command(ctx, self.logger, 'bois')
-        embed = discord.Embed(**self.config['bois'])
-        await ctx.message.reply(embed=embed)
+        await ctx.message.reply(self.config['bois']['url'])
 
     @commands.command(name='scuse')
     async def _(self, ctx):
