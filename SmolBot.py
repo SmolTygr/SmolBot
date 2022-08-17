@@ -27,14 +27,12 @@ config.read(config_path)
 # An instance is required, as it has to pass "self" into it.
 # See discord.py API on this
 smolbot = commands.Bot(command_prefix=BOT_PREFIX, logger=logger)
-smolbot.add_cog(clips.Clips(bot=smolbot, logger=logger, config=config))
+smolbot.load_extension('Clips')
 
 
 @smolbot.command()
-async def reload_cogs(ctx):
-    smolbot.remove_cog('Clips')
-    smolbot.add_cog(clips.Clips(bot=smolbot, logger=logger, config=config))
-    await ctx.message.add_reaction('👍')
+async def reload_ex(ctx):
+    smolbot.reload_extension('Clips')
 
 @smolbot.event
 async def on_ready():

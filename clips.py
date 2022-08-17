@@ -1,5 +1,7 @@
 import random
 import logging
+import os
+import configparser
 import discord
 from discord.ext import commands
 
@@ -8,10 +10,16 @@ from log import log_command
 
 
 class Clips(commands.Cog):
-    def __init__(self, bot, logger: logging.Logger, config: dict):
+    def __init__(self, bot):
         self.bot = bot
-        self.logger = logger
-        self.config = config
+        self.logger = logging.getLogger('SmolBot')
+
+        CONFIG_NAME = 'smolConfig.ini'
+        DIR_ = os.path.dirname(__file__)
+
+        config_path = os.path.join(DIR_, CONFIG_NAME)
+        self.config = configparser.ConfigParser()
+        self.config.read(config_path)
 
     @commands.command()
     async def test(self, ctx):
@@ -95,3 +103,7 @@ class Clips(commands.Cog):
             !random_clip
         """
         await ctx.message.reply(message)
+
+
+def setup(bot):
+    bot.add_cog(Clips(bot))
