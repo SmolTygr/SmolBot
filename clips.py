@@ -1,25 +1,13 @@
 import random
-import logging
-import os
-import configparser
-import discord
 from discord.ext import commands
 
 # Custom module import
 from log import log_command
 
 
-class Clips(commands.Cog):
+class clips(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.logger = logging.getLogger('SmolBot')
-
-        CONFIG_NAME = 'smolConfig.ini'
-        DIR_ = os.path.dirname(__file__)
-
-        config_path = os.path.join(DIR_, CONFIG_NAME)
-        self.config = configparser.ConfigParser()
-        self.config.read(config_path)
 
     @commands.command()
     async def test(self, ctx):
@@ -28,66 +16,66 @@ class Clips(commands.Cog):
     @commands.command()
     async def bois(self, ctx):
         """Respond with a link to SydneyMGames clip"""
-        log_command(ctx, self.logger, 'bois')
-        await ctx.message.reply(self.config['bois']['url'])
+        log_command(ctx, self.bot.logger, 'bois')
+        await ctx.message.reply(self.bot.config['bois']['url'])
 
     @commands.command()
     async def scuse(self, ctx):
         """Respond with a link to SydneyMGames clip"""
-        log_command(ctx, self.logger, 'scuse')
-        await ctx.message.reply(self.config['scuse']['url'])
+        log_command(ctx, self.bot.logger, 'scuse')
+        await ctx.message.reply(self.bot.config['scuse']['url'])
 
     @commands.command()
     async def dolphin(self, ctx):
         """Respond with a link to BirdyRage clip"""
-        log_command(ctx, self.logger, 'dolphin')
-        await ctx.message.reply(self.config['dolphin']['url'])
+        log_command(ctx, self.bot.logger, 'dolphin')
+        await ctx.message.reply(self.bot.config['dolphin']['url'])
 
     @commands.command()
     async def brenky(self, ctx):
         """Respond with a link to BirdyRage clip"""
-        log_command(ctx, self.logger, 'brenky')
-        await ctx.message.reply(self.config['brenky']['url'])
+        log_command(ctx, self.bot.logger, 'brenky')
+        await ctx.message.reply(self.bot.config['brenky']['url'])
 
     @commands.command()
     async def batman(self, ctx):
         """Respond with a link to BirdyRage clip"""
-        log_command(ctx, self.logger, 'batman')
-        await ctx.message.reply(self.config['batman']['url'])
+        log_command(ctx, self.bot.logger, 'batman')
+        await ctx.message.reply(self.bot.config['batman']['url'])
 
     @commands.command()
     async def soap(self, ctx):
         """Respond with a link to BirdyRage clip"""
-        log_command(ctx, self.logger, 'soap')
-        await ctx.message.reply(self.config['soap']['url'])
+        log_command(ctx, self.bot.logger, 'soap')
+        await ctx.message.reply(self.bot.config['soap']['url'])
 
     @commands.command()
     async def blow(self, ctx):
         """Respond with a link to BirdyRage clip"""
-        log_command(ctx, self.logger, 'blow')
-        await ctx.message.reply(self.config['blow']['url'])
+        log_command(ctx, self.bot.logger, 'blow')
+        await ctx.message.reply(self.bot.config['blow']['url'])
 
     @commands.command()
     async def bwah(self, ctx):
         """Respond with a link to BirdyRage clip"""
-        log_command(ctx, self.logger, 'bwah')
-        await ctx.message.reply(self.config['bwah']['url'])
+        log_command(ctx, self.bot.logger, 'bwah')
+        await ctx.message.reply(self.bot.config['bwah']['url'])
 
     @commands.command()
     async def random_clip(self, ctx):
         """Respond with a random clip"""
-        log_command(ctx, self.logger, 'random_clip')
+        log_command(ctx, self.bot.logger, 'random_clip')
 
         clips = ('bois', 'scuse', 'brenky', 'dolphin', 'batman',
                  'soap', 'blow', 'bwah')
 
         clip = clips[random.randint(0, len(clips)-1)]
-        await ctx.message.reply(self.config[clip]['url'])
+        await ctx.message.reply(self.bot.config[clip]['url'])
 
     @commands.command()
     async def clips(self, ctx):
         """Send a list of clip commands"""
-        log_command(ctx, self.logger, 'clips')
+        log_command(ctx, self.bot.logger, 'clips')
 
         message = """Some amazing clips from the best streamers:
             !bois
@@ -106,4 +94,4 @@ class Clips(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(Clips(bot))
+    bot.add_cog(clips(bot))
