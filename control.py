@@ -68,7 +68,6 @@ class control(commands.Cog):
             !ciri - Get a random picture of Ciri
             !cool - Find out how cool you are
             !good_bot / bad_bot - Tell the bot how you feel
-            
             !suggest - Send a suggestion for a change to SmolBot
             
         If you have questions / issues, just let SmolTygr know.
