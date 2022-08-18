@@ -61,7 +61,7 @@ class clips(commands.Cog):
         log_command(ctx, self.bot.logger, 'bwah')
         await ctx.message.reply(self.bot.config['bwah']['url'])
 
-    @commands.command()
+    @commands.command(aliases=['clip'])
     async def random_clip(self, ctx):
         """Respond with a random clip"""
         log_command(ctx, self.bot.logger, 'random_clip')

@@ -32,8 +32,8 @@ class control(commands.Cog):
 
         await ctx.message.add_reaction('✅')
             
-    @commands.command(name='ping')
-    async def _(self, ctx):
+    @commands.command()
+    async def ping(self, ctx):
         """Ping smolbot to check its status"""
         log_command(ctx, self.bot.logger, 'ping')
         await ctx.message.add_reaction('👍')
@@ -67,6 +67,8 @@ class control(commands.Cog):
             !ping - Check i am awake
             !ciri - Get a random picture of Ciri
             !cool - Find out how cool you are
+            !good_bot / bad_bot - Tell the bot how you feel
+            
             !suggest - Send a suggestion for a change to SmolBot
             
         If you have questions / issues, just let SmolTygr know.
