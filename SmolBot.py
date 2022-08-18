@@ -1,164 +1,56 @@
-
+import logging
 import os
 import discord
 from discord.ext import commands
-import random
 import configparser
 
 # Custom modules
 from log import setup_logging, log_command
-import clips
 
-
-# Constants / global variables
-CONFIG_NAME = 'smolConfig.ini'
-DIR_ = os.path.dirname(__file__)
-BOT_PREFIX = '!'
 
 # Setup Logging
 logger = setup_logging()
 
-# Get command / config settings
-config_path = os.path.join(DIR_, CONFIG_NAME)
-config = configparser.ConfigParser()
-config.read(config_path)
-
 
 #Intents
 intents = discord.Intents.default()
-intents.message_content = True 
+intents.message_content = True
 
-# Have to create bot instance here, for .command/.event dectorators.
-# An instance is required, as it has to pass "self" into it.
-# See discord.py API on this
-smolbot = commands.Bot(command_prefix=BOT_PREFIX, logger=logger)
-smolbot.load_extension('clips')
-
-
-@smolbot.command()
-async def reload_ex(ctx):
-    smolbot.reload_extension('clips')
-
-@smolbot.event
-async def on_ready():
-    """Perform actions when bot comes online"""
-    logger.info('SmolBot is now online!')
-
-
-@smolbot.command(name='ping')
-async def _(ctx):
-    """Ping smolbot to check its status"""
-    log_command(ctx, logger, 'ping')
-    await ctx.message.add_reaction('👍')
-
-
-@smolbot.command(name='reset_config')
-async def _(ctx):
-    log_command(ctx, logger, 'reset_config')
-
-    allowed_users = config['reset_config']['allowed_users'].split(sep=', ')
-    if str(ctx.author)[:-5] not in allowed_users:
-        await ctx.send('You do not have the power! You cannot reset me. Muhahaha')
-        await ctx.message.add_reaction('❎')
-        return
-
-    config.read(config_path)
-    logger.info('Config.ini re-read!')
-    await ctx.message.add_reaction('✅')
-
-
-@smolbot.command(name='smol_help')
-async def _(ctx):
-    log_command(ctx,  logger, 'smol_help')
-    message = """Hello, I am a very smol bot (🤖), you can call me SmolBot.
+class SmolBot(commands.Bot):
     
-Currently, these are the commands you can call:
-    !smol help - This command :)
-    !clips - Get a list of great twitch clips commands
-    !ping - Check i am awake
-    !ciri - Get a random picture of Ciri
-    !cool - Find out how cool you are
-    !suggest - Send a suggestion for a change to SmolBot
-    
-If you have questions / issues, just let SmolTygr know.
-"""
-    await ctx.message.reply(message)
-
-
-@smolbot.command(name='ciri')
-async def _(ctx):
-    log_command(ctx, logger, 'ciri')
-
-    # Get a random .png from Ciri folder
-    images = os.listdir(os.path.join(DIR_, 'ciri'))
-    images = [file for file in images if file.endswith('.png')]
-
-    random_image = images[random.randint(0, len(images)-1)]
-    random_image_path = os.path.join(DIR_, 'ciri', random_image)
-
-    file = discord.File(random_image_path, 'ciri.png')
-    embed = discord.Embed(author='Smol',
-                          title='Ciri',
-                          description='Have a free ciri photo!')
-    embed.set_image(url="attachment://ciri.png")
-    await ctx.message.reply(file=file, embed=embed)
-
-
-@smolbot.command(name='cool')
-async def _cool(ctx):
-    log_command(ctx, logger, 'cool')
-
-    if str(ctx.author)[:-5] == 'Smol_Tygr':
-        await ctx.send('Smol is the coolest. No need to even check')
-        return None
-
-    coolness = random.randint(0, 101)
-    message = "Function has broken. Balls."
-
-    if coolness < 10:
-        message = "Oh... Maybe don't let people know this"
-    elif coolness < 30:
-        message = "That's not very cool"
-    elif coolness < 50:
-        message = "Please try again, but harder"
-    elif coolness < 70:
-        message = "That's not bad!"
-    elif coolness < 90:
-        message = "Pretty damn cool!"
-    elif coolness < 101:
-        message = "So cool!"
-    elif coolness == 101:
-        message = "THE COOLEST."
-
-    await ctx.send(f'{str(ctx.author)[:-5]} is {coolness}% cool. {message}')
-
-
-@smolbot.command(name='suggest')
-async def _(ctx):
-    log_command(ctx,  logger, 'suggest')
-
-    # Suggestion / idea chnnael on A Smol Server
-    channel = smolbot.get_channel(1008099482229031042)
-
-    # Strip first part of message which is !suggest
-    message = str(ctx.message.content)[9:]
-    await channel.send(f'{ctx.author.mention} has suggested: {message}')
-    await ctx.message.reply('Thank you for the suggestion. It has been sent to A Smol Server')
-
-
-# @smol_bot.listen('on_message')
-# async def on_message_(message):
-
-#     # Ignore messages from the bot itself.
-#     if message.author == smol_bot.user:
-#         return
-
+    def __init__(self, prefix: str, intents: discord.Intents, logger: logging.Logger):
+        
+        # Call commands.Bot __init__
+        super().__init__(command_prefix=prefix, intents=intents, logger=logger)
+        
+        # Store logger here to stop it being parsed to each extension
+        self.logger = logger 
+        
+        # self._config_path stored as used in control.py 'reset_config'
+        self._config_path = os.path.join(os.path.dirname(__file__), 'config.ini')
+        self.config = configparser.ConfigParser()
+        self.config.read(self._config_path)
+        
 
 if __name__ == '__main__':
-    token_path = os.path.join(DIR_, 'token.txt')
+    
+    token_path = os.path.join(os.path.pardir(__file__), 'token.txt')
 
     # Get the OATH2 TOKEN to connect bot
     with open(token_path, 'r') as file:
         TOKEN = file.readline()
+    
+    # Have to create bot instance here, for .command/.event dectorators.
+    # An instance is required, as it has to pass "self" into it.
+    # See discord.py API on this
+    smolbot = SmolBot(prefix='!', intents=intents, logger=logger)
+    smolbot.load_extension('clips')
+    smolbot.load_extension('control')
+    smolbot.load_extension('loose')
 
+    @smolbot.event
+    async def on_ready():
+        """Perform actions when bot comes online"""
+        logger.info('SmolBot is now online!')
+    
     smolbot.run(TOKEN)
