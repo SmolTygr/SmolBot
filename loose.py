@@ -13,8 +13,14 @@ class loose(commands.Cog):
         self.bot = bot
 
     @commands.command()
+    async def good_bot(self, ctx):
+        log_command(ctx, self.bot.logger, 'good_bot')
+        for emoji in ('❤️', '💙', '💚', '🧡', '💜', '🤍'):
+            await ctx.message.add_reaction(emoji)
+
+    @commands.command()
     async def ciri(self, ctx):
-        log_command(ctx, self.bot.logger, 'ciri')
+
 
         # Get a random .png from Ciri folder
         images = os.listdir(os.path.join(os.path.dirname(__file__), 'ciri'))

@@ -31,7 +31,6 @@ class control(commands.Cog):
 
         await ctx.message.add_reaction('✅')
             
-            
     @commands.command(name='ping')
     async def _(self, ctx):
         """Ping smolbot to check its status"""
