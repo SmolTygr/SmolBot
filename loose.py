@@ -15,8 +15,13 @@ class loose(commands.Cog):
     @commands.command()
     async def good_bot(self, ctx):
         log_command(ctx, self.bot.logger, 'good_bot')
-        for emoji in ('❤️', '💙', '💚', '🧡', '💜', '🤍'):
+        for emoji in ('❤️', '💙', '💚', '🧡', '💜', '🤍', '💛', '🖤', '🤎'):
             await ctx.message.add_reaction(emoji)
+
+    @commands.command()
+    async def bad_bot(self, ctx):
+        log_command(ctx, self.bot.logger, 'bad_bot')
+        await ctx.message.add_reaction('👿')
 
     @commands.command()
     async def ciri(self, ctx):
