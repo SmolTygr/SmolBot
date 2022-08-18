@@ -27,7 +27,9 @@ class control(commands.Cog):
     async def reload_ex(self, ctx):
         log_command(ctx, self.bot.logger, 'reload_ex')
         for extension in self.bot.config['reset_config']['allowed_users'].split(sep=', '):
-            self.bot.reload_extension(extension)
+            await self.bot.reload_extension(extension)
+
+        await ctx.message.add_reaction('✅')
             
             
     @commands.command(name='ping')
