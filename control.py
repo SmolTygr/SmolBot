@@ -67,5 +67,6 @@ class control(commands.Cog):
         """
         await ctx.message.reply(message)
         
-def setup(bot):
-    bot.add_cog(control(bot))
+
+async def setup(bot):
+    await bot.add_cog(control(bot))

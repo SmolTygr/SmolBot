@@ -7,7 +7,7 @@ from discord.ext import commands
 from log import log_command
 
 
-class control(commands.Cog):
+class loose(commands.Cog):
     
     def __init__(self, bot):
         self.bot = bot
@@ -59,5 +59,5 @@ class control(commands.Cog):
         await ctx.send(f'{str(ctx.author)[:-5]} is {coolness}% cool. {message}')
         
         
-def setup(bot):
-    bot.add_cog(control(bot))
+async def setup(bot):
+    await bot.add_cog(loose(bot))

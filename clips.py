@@ -93,5 +93,5 @@ class clips(commands.Cog):
         await ctx.message.reply(message)
 
 
-def setup(bot):
-    bot.add_cog(clips(bot))
+async def setup(bot):
+    await bot.add_cog(clips(bot))

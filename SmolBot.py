@@ -31,6 +31,11 @@ class SmolBot(commands.Bot):
         self.config = configparser.ConfigParser()
         self.config.read(self._config_path)
         
+    async def setup_hook(self):
+        await self.load_extension('clips')
+        await self.load_extension('control')
+        await self.load_extension('loose')
+        
 
 if __name__ == '__main__':
     
