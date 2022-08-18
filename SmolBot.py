@@ -12,39 +12,41 @@ from log import setup_logging, log_command
 logger = setup_logging()
 
 
-#Intents
+# Intents
 intents = discord.Intents.default()
 intents.message_content = True
 
+
 class SmolBot(commands.Bot):
-    
+
     def __init__(self, prefix: str, intents: discord.Intents, logger: logging.Logger):
-        
+
         # Call commands.Bot __init__
         super().__init__(command_prefix=prefix, intents=intents, logger=logger)
-        
+
         # Store logger here to stop it being parsed to each extension
-        self.logger = logger 
-        
+        self.logger = logger
+
         # self._config_path stored as used in control.py 'reset_config'
-        self._config_path = os.path.join(os.path.dirname(__file__), 'config.ini')
+        self._config_path = os.path.join(
+            os.path.dirname(__file__), 'config.ini')
         self.config = configparser.ConfigParser()
         self.config.read(self._config_path)
-        
+
     async def setup_hook(self):
         await self.load_extension('clips')
         await self.load_extension('control')
         await self.load_extension('loose')
-        
+
 
 if __name__ == '__main__':
-    
+
     token_path = os.path.join(os.path.dirname(__file__), 'token.txt')
 
     # Get the OATH2 TOKEN to connect bot
     with open(token_path, 'r') as file:
         TOKEN = file.readline()
-    
+
     # Have to create bot instance here, for .command/.event dectorators.
     # An instance is required, as it has to pass "self" into it.
     # See discord.py API on this
@@ -55,8 +57,4 @@ if __name__ == '__main__':
         """Perform actions when bot comes online"""
         logger.info('SmolBot is now online!')
 
-        await smolbot.load_extension('clips')
-        await smolbot.load_extension('control')
-        await smolbot.load_extension('loose')
-    
     smolbot.run(TOKEN)
