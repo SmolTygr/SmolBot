@@ -17,11 +17,11 @@ class loose(commands.Cog):
         log_command(ctx, self.bot.logger, 'ciri')
 
         # Get a random .png from Ciri folder
-        images = os.listdir(os.path.join(os.path.pardir(__file__), 'ciri'))
+        images = os.listdir(os.path.join(os.path.dirname(__file__), 'ciri'))
         images = [file for file in images if file.endswith('.png')]
 
         random_image = images[random.randint(0, len(images)-1)]
-        random_image_path = os.path.join(os.path.pardir(__file__), 'ciri', random_image)
+        random_image_path = os.path.join(os.path.dirname(__file__), 'ciri', random_image)
 
         file = discord.File(random_image_path, 'ciri.png')
         embed = discord.Embed(author='Smol',
