@@ -40,15 +40,15 @@ class control(commands.Cog):
         
     @commands.command(aliases=['suggestion'])
     async def suggest(self, ctx):
+        """Creates a thread in Suggestion channel"""
         log_command(ctx,  self.bot.logger, 'suggest')
 
-        # Suggestion / idea chnnael on A Smol Server
-        channel = self.bot.get_channel(1008099482229031042)
-
-        # Strip first part of message which is !suggest
-        message = str(ctx.message.content)[9:]
-        await channel.send(f'{ctx.author.mention} has suggested: {message}')
-        await ctx.message.reply('Thank you for the suggestion. It has been sent to A Smol Server')
+        # Get the A Smol Server - Suggestion channel
+        channel = await self.bot.get_channel(1008099482229031042)
+        thread = await channel.create_thread(name=f'{str(ctx.author.display_name)} suggestion',
+                                             message=str(ctx.message.content)[9:])
+        await thread.create_message('<@325726203681964043>')
+        await ctx.message.reply('Thank you for the suggestion. A thread has been made in <@1008099482229031042>')
         
     
     @commands.command()
