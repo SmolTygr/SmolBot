@@ -44,13 +44,14 @@ if __name__ == '__main__':
     # An instance is required, as it has to pass "self" into it.
     # See discord.py API on this
     smolbot = SmolBot(prefix='!', intents=intents, logger=logger)
-    smolbot.load_extension('clips')
-    smolbot.load_extension('control')
-    smolbot.load_extension('loose')
 
     @smolbot.event
     async def on_ready():
         """Perform actions when bot comes online"""
         logger.info('SmolBot is now online!')
+
+        await smolbot.load_extension('clips')
+        await smolbot.load_extension('control')
+        await smolbot.load_extension('loose')
     
     smolbot.run(TOKEN)
