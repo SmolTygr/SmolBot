@@ -34,7 +34,7 @@ class SmolBot(commands.Bot):
 
 if __name__ == '__main__':
     
-    token_path = os.path.join(os.path.pardir(__file__), 'token.txt')
+    token_path = os.path.join(os.path.dirname(__file__), 'token.txt')
 
     # Get the OATH2 TOKEN to connect bot
     with open(token_path, 'r') as file:
