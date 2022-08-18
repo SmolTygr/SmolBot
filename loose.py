@@ -35,8 +35,7 @@ class loose(commands.Cog):
         random_image_path = os.path.join(os.path.dirname(__file__), 'ciri', random_image)
 
         file = discord.File(random_image_path, 'ciri.png')
-        embed = discord.Embed(author='Smol',
-                            title='Ciri',
+        embed = discord.Embed(title='Ciri',
                             description='Have a free ciri photo!')
         embed.set_image(url="attachment://ciri.png")
         await ctx.message.reply(file=file, embed=embed)
