@@ -51,7 +51,7 @@ class control(commands.Cog):
 
         await thread.send(f'<@325726203681964043>. New suggestion brah. Chop chop.')
         await thread.send(str(ctx.message.content)[9:])
-        await ctx.message.reply(f'Thank you for the suggestion. A thread has been made in {channel.mention}')
+        await ctx.message.reply(f'Thank you for the suggestion. A thread has been made {thread.mention}')
 
 
         
