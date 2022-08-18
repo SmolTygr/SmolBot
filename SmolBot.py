@@ -34,6 +34,9 @@ class SmolBot(commands.Bot):
         self.config.read(self._config_path)
 
     async def setup_hook(self):
+        # Make commands case insenstive
+        self._BotBase__cogs = commands.core._CaseInsensitiveDict()
+
         await self.load_extension('clips')
         await self.load_extension('control')
         await self.load_extension('loose')
