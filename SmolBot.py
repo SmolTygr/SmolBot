@@ -23,6 +23,11 @@ config_path = os.path.join(DIR_, CONFIG_NAME)
 config = configparser.ConfigParser()
 config.read(config_path)
 
+
+#Intents
+intents = discord.Intents.default()
+intents.message_content = True 
+
 # Have to create bot instance here, for .command/.event dectorators.
 # An instance is required, as it has to pass "self" into it.
 # See discord.py API on this
