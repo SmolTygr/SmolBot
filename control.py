@@ -44,7 +44,7 @@ class control(commands.Cog):
         log_command(ctx,  self.bot.logger, 'suggest')
 
         # Get the A Smol Server - Suggestion channel
-        channel = await self.bot.get_channel(1008099482229031042)
+        channel = self.bot.get_channel(1008099482229031042)
         thread = await channel.create_thread(name=f'{str(ctx.author.display_name)} suggestion',
                                              message=str(ctx.message.content)[9:])
         await thread.create_message('<@325726203681964043>')
