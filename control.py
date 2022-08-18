@@ -26,7 +26,7 @@ class control(commands.Cog):
     @commands.command()
     async def reload_ex(self, ctx):
         log_command(ctx, self.bot.logger, 'reload_ex')
-        for extension in self.bot.config['reset_config']['allowed_users'].split(sep=', '):
+        for extension in self.bot.config['reset_config']['extension_names'].split(sep=', '):
             await self.bot.reload_extension(extension)
 
         await ctx.message.add_reaction('✅')
