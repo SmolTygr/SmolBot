@@ -45,10 +45,12 @@ class control(commands.Cog):
 
         # Get the A Smol Server - Suggestion channel
         channel = self.bot.get_channel(1008099482229031042)
+        smol_tygr = self.bot.get_user(325726203681964043)
         thread = await channel.create_thread(name=f'{str(ctx.author.display_name)} suggestion',
                                              message=str(ctx.message.content)[9:])
-        await thread.create_message('<@325726203681964043>')
-        await ctx.message.reply('Thank you for the suggestion. A thread has been made in <@1008099482229031042>')
+        await thread.create_message(f'{smol_tygr.mention}')
+        await ctx.message.reply(f'Thank you for the suggestion. A thread has been made in {channel.mention}')
+
         
     
     @commands.command()
