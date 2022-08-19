@@ -22,6 +22,12 @@ class loose(commands.Cog):
     async def bad_bot(self, ctx):
         log_command(ctx, self.bot.logger, 'bad_bot')
         await ctx.message.add_reaction('👿')
+        
+    @commands.command(aliases=['suggest_a_game'])
+    async def what_game(self, ctx):
+        log_command(ctx, self.bot.logger, 'what_game')
+        await ctx.message.reply('You want a game to play? It has to be Bugsnax!')
+         
 
     @commands.command()
     async def ciri(self, ctx):
