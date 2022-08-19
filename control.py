@@ -26,12 +26,6 @@ class control(commands.Cog):
     async def reset_config(self, ctx):
         log_command(ctx, self.bot.logger, 'reset_config')
 
-        allowed_users = self.bot.config['reset_config']['allowed_users'].split(sep=', ')
-        if str(ctx.author)[:-5] not in allowed_users:
-            await ctx.send('You do not have the power! You cannot reset me. Muhahaha')
-            await ctx.message.add_reaction('❎')
-            return
-
         self.config.read(self.bot._config_path)
         self.bot.logger.info('Config.ini re-read!')
         await ctx.message.add_reaction('✅')
