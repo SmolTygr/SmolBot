@@ -26,7 +26,7 @@ class control(commands.Cog):
     async def reset_config(self, ctx):
         log_command(ctx, self.bot.logger, 'reset_config')
 
-        self.config.read(self.bot._config_path)
+        self.bot.config.read(self.bot._config_path)
         self.bot.logger.info('Config.ini re-read!')
         await ctx.message.add_reaction('✅')
         
