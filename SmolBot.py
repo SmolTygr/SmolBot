@@ -57,4 +57,4 @@ if __name__ == '__main__':
         """Perform actions when bot comes online"""
         logger.info('SmolBot is now online!')
 
-    smolbot.run(TOKEN)
+    smolbot.run(TOKEN, log_handler=None)
