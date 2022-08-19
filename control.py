@@ -22,7 +22,7 @@ class control(commands.Cog):
         return commands.check(predicate)
     
     @commands.command()
-    @commands.check_any(_smoltygr_check(), _server_owner_check())
+    @commands.check_any(_smoltygr_check())
     async def reset_config(self, ctx):
         log_command(ctx, self.bot.logger, 'reset_config')
 
@@ -37,7 +37,7 @@ class control(commands.Cog):
         await ctx.message.add_reaction('✅')
         
     @commands.command()
-    @commands.check_any(_smoltygr_check(), _server_owner_check())
+    @commands.check_any(_smoltygr_check())
     async def reload_ex(self, ctx):
         log_command(ctx, self.bot.logger, 'reload_ex')
         for extension in self.bot.config['reload_ex']['names'].split(sep=', '):
