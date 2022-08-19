@@ -62,7 +62,7 @@ class control(commands.Cog):
         thread = await channel.create_thread(name=f'{str(ctx.author.display_name)} suggestion',
                                              type=ChannelType.public_thread)
 
-        await thread.send(f'<@325726203681964043>. Chop chop.')
+        await thread.send(f'<@325726203681964043>, there is a new suggestion from {ctx.message.author.mention}.')
         await thread.send(str(ctx.message.content)[9:])
         await ctx.message.reply(f'Thank you for the suggestion. A thread has been made {thread.mention}')
         
