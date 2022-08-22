@@ -44,7 +44,10 @@ class control(commands.Cog):
         await execute_query(connection=self.bot.database,
                             query=f'DELETE FROM delayed_messages WHERE id={next_task["id"]};')
         
-        
+    @commands.command()
+    async def test_args(self, ctx, *, message: str):
+        await ctx.reply(locals())
+            
             
     @commands.command()
     async def delay_message(self, ctx, *, message: str):
