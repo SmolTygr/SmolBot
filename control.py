@@ -47,16 +47,17 @@ class control(commands.Cog):
     
     @commands.check_any(_smoltygr_check())
     @commands.command()
-    async def test_args(self, ctx, *, message: str):
+    async def test_args(self, ctx):
         
         await ctx.reply('What date/time do you want it?')
         
         try:
             date_time = await self.wait_for('message', timeout=20.0)
-            await ctx.reply(f'Thank you. I have got: "{message}" at {date_time}')
         except asyncio.TimeoutError:
-            return await message.channel.send(f'Time out. Command cancelled')
-    
+            return await ctx.channel.send(f'Time out. Command cancelled')
+        
+        await ctx.channel.send(f'Thank you. I have got: "{ctx.message}" at {date_time}')
+        
         
             
             
