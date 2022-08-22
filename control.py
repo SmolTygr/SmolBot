@@ -1,14 +1,17 @@
-from discord.ext import commands
+from discord.ext import commands, tasks
 from discord import ChannelType
+import discord 
 
 # Custom module import
 from log import log_command
+from sql import execute_query
 
 
 class control(commands.Cog):
     
     def __init__(self, bot):
         self.bot = bot
+        self.delayed_message.start()
     
     # Check documentation: https://discordpy.readthedocs.io/en/stable/ext/commands/api.html#discord.ext.commands.check
     def _smoltygr_check():
@@ -21,6 +24,38 @@ class control(commands.Cog):
             return ctx.guild is not None and ctx.guild.owner_id == ctx.author.id
         return commands.check(predicate)
     
+    
+    @tasks.loop()
+    async def delayed_message(self):
+    
+        
+        next_task = await execute_query(connection=self.bot.database,
+                                        query="""SELECT * FROM delayed_messages ORDER BY call_date LIMIT 1""")
+        
+        # if no remaining tasks, stop the loop
+        if next_task is None:
+            self.delayed_message.cancel()
+            
+        await discord.utils.sleep_until(next_task['call_date'])
+            
+        channel = self.bot.get_channel(1008115016907640905)
+        channel.send(next_task['message'])
+        
+        await execute_query(connection=self.bot.database,
+                            query=f'DELETE FROM delayed_messages WHERE id={next_task["id"]};')
+        
+        
+            
+    @commands.command()
+    async def delay_message(self, ctx, *, message: str):
+        ctx.reply('Unused')
+        if self.delayed_message.is_running():
+            self.delayed_message.restart()
+        else:
+            self.delayed_message.start()
+            
+        
+            
     @commands.command()
     @commands.check_any(_smoltygr_check())
     async def reset_config(self, ctx):

@@ -5,7 +5,8 @@ from discord.ext import commands
 import configparser
 
 # Custom modules
-from log import setup_logging, log_command
+from sql import database_connect
+from log import setup_logging
 
 
 # Setup Logging
@@ -32,6 +33,10 @@ class SmolBot(commands.Bot):
             os.path.dirname(__file__), 'config.ini')
         self.config = configparser.ConfigParser()
         self.config.read(self._config_path)
+        
+        # Connect to database
+        self.databse = database_connect(os.path.join(
+            os.path.dirname(__file__), 'smolbot.sqlite'))
 
     async def setup_hook(self):
         await self.load_extension('clips')
