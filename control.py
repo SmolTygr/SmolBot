@@ -1,6 +1,7 @@
 from discord.ext import commands, tasks
 from discord import ChannelType
 import discord 
+import asyncio
 
 # Custom module import
 from log import log_command
@@ -43,10 +44,20 @@ class control(commands.Cog):
         
         await execute_query(connection=self.bot.database,
                             query=f'DELETE FROM delayed_messages WHERE id={next_task["id"]};')
-        
+    
+    @commands.check_any(_smoltygr_check())
     @commands.command()
-    async def test_args(self, ctx, *, date: str, message: str):
-        await ctx.reply(locals())
+    async def test_args(self, ctx, *, message: str):
+        
+        await ctx.reply('What date/time do you want it?')
+        
+        try:
+            date_time = await self.wait_for('message', timeout=20.0)
+            await ctx.reply(f'Thank you. I have got: "{message}" at {date_time}')
+        except asyncio.TimeoutError:
+            return await message.channel.send(f'Time out. Command cancelled')
+    
+        
             
             
     @commands.command()
