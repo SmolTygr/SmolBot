@@ -45,7 +45,7 @@ class control(commands.Cog):
                             query=f'DELETE FROM delayed_messages WHERE id={next_task["id"]};')
         
     @commands.command()
-    async def test_args(self, ctx, *, message: str):
+    async def test_args(self, ctx, *, date: str, message: str):
         await ctx.reply(locals())
             
             

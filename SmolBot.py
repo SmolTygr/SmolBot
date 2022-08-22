@@ -35,8 +35,7 @@ class SmolBot(commands.Bot):
         self.config.read(self._config_path)
         
         # Connect to database
-        self.databse = database_connect(os.path.join(
-            os.path.dirname(__file__), 'smolbot.sqlite'))
+        self.databse = database_connect(os.path.join(os.path.dirname(__file__), 'smolbot.sqlite'))
 
     async def setup_hook(self):
         await self.load_extension('clips')
