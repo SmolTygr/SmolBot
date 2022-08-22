@@ -52,11 +52,11 @@ class control(commands.Cog):
         await ctx.reply('What date/time do you want it?')
         
         try:
-            date_time = await self.wait_for('message', timeout=20.0)
+            date_time = await self.bot.wait_for('message', timeout=20.0)
         except asyncio.TimeoutError:
-            return await ctx.channel.send(f'Time out. Command cancelled')
+            return await ctx.message.channel.send(f'Time out. Command cancelled')
         
-        await ctx.channel.send(f'Thank you. I have got: "{ctx.message}" at {date_time}')
+        await ctx.message.channel.send(f'Thank you. I have got: "{ctx.message}" at {date_time}')
         
         
             
