@@ -14,7 +14,7 @@ logger = setup_logging()
 
 
 # Intents
-intents = discord.Intents.all()
+intents = discord.Intents.default()
 intents.message_content = True
 
 
