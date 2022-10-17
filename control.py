@@ -36,7 +36,7 @@ class control(commands.Cog):
             self.bot.logger.info('bail')
             return
         
-        self.bot.logger.info(f'Mange roles permission: {discord.Permissions().manage_roles()}')
+        self.bot.logger.info(f'Mange roles permission: {discord.Permissions().manage_roles}')
         self.bot.logger.info('Attempting role reaction')
 
         if payload.emoji.name == '🧡':
