@@ -40,16 +40,15 @@ class control(commands.Cog):
         if payload.message_id != self.role_message:
             self.bot.logger.info('bail')
             return
-        try:
-            if payload.emoji.name == '🧡':
-                self.bot.logger.info('Found orange heart')
-                
-                role = discord.utils.get(payload.member.guild, name='Test')
-                self.bot.logger.info(f'Got Role with id: {role.id}')
-                
-                await payload.member.add_roles(role, reason='Clicked button', atomic=True)
-        except BaseException as error:
-            print(error)
+
+        if payload.emoji.name == '🧡':
+            self.bot.logger.info('Found orange heart')
+            
+            role = discord.utils.get(payload.member.guild, name='Test')
+            self.bot.logger.info(f'Got Role with id: {role.id}')
+            
+            await payload.member.add_roles(role, reason='Clicked button', atomic=True)
+
 
     # @tasks.loop()
     # async def delayed_message(self):
