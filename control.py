@@ -15,7 +15,7 @@ class control(commands.Cog):
         self.bot = bot
         self.delayed_message.start()
 
-        self.role_message = '1031657954417586186'
+        self.role_message = 1031657954417586186
 
     # Check documentation: https://discordpy.readthedocs.io/en/stable/ext/commands/api.html#discord.ext.commands.check
     def _smoltygr_check():
@@ -34,8 +34,7 @@ class control(commands.Cog):
 
         # Guard statement: Ignore reactions added to messages not the role selection message.
         if payload.message_id != self.role_message:
-            self.bot.logger.info(
-                'Reaction not on role selection message. Ignored.')
+            self.bot.logger.info('Reaction not on role selection message. Ignored.')
             return
 
         if payload.emoji == '🧡':
