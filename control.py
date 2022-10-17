@@ -39,24 +39,24 @@ class control(commands.Cog):
             self.bot.logger.info(payload.member.name)
             await payload.member.add_roles(role)
 
-    @tasks.loop()
-    async def delayed_message(self):
+    # @tasks.loop()
+    # async def delayed_message(self):
     
         
-        next_task = await execute_query(connection=self.bot.database,
-                                        query="""SELECT * FROM delayed_messages ORDER BY call_date LIMIT 1""")
+    #     next_task = await execute_query(connection=self.bot.database,
+    #                                     query="""SELECT * FROM delayed_messages ORDER BY call_date LIMIT 1""")
         
-        # if no remaining tasks, stop the loop
-        if next_task is None:
-            self.delayed_message.cancel()
+    #     # if no remaining tasks, stop the loop
+    #     if next_task is None:
+    #         self.delayed_message.cancel()
             
-        await discord.utils.sleep_until(next_task['call_date'])
+    #     await discord.utils.sleep_until(next_task['call_date'])
             
-        channel = self.bot.get_channel(1008115016907640905)
-        channel.send(next_task['message'])
+    #     channel = self.bot.get_channel(1008115016907640905)
+    #     channel.send(next_task['message'])
         
-        await execute_query(connection=self.bot.database,
-                            query=f'DELETE FROM delayed_messages WHERE id={next_task["id"]};')
+    #     await execute_query(connection=self.bot.database,
+    #                         query=f'DELETE FROM delayed_messages WHERE id={next_task["id"]};')
     
     @commands.check_any(_smoltygr_check())
     @commands.command()
