@@ -28,10 +28,6 @@ class control(commands.Cog):
             return ctx.guild is not None and ctx.guild.owner_id == ctx.author.id
         return commands.check(predicate)
     
-    
-    # Cog error handler
-    async def cog_command_error(self, ctx, error):
-        self.bot.logger.info(f"An error occurred in the Test cog: {error}")
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
@@ -40,14 +36,16 @@ class control(commands.Cog):
         if payload.message_id != self.role_message:
             self.bot.logger.info('bail')
             return
-    
-        if payload.emoji.name == '🧡':
-            self.bot.logger.info('Found orange heart')
-            
-            role = discord.utils.get(payload.member.guild, name='Test')
-            self.bot.logger.info(f'Got Role with id: {role.id}')
-            
-            await payload.member.add_roles(role, reason='Clicked button', atomic=True)
+        try:
+            if payload.emoji.name == '🧡':
+                self.bot.logger.info('Found orange heart')
+                
+                role = discord.utils.get(payload.member.guild, name='Test')
+                self.bot.logger.info(f'Got Role with id: {role.id}')
+                
+                await payload.member.add_roles(role, reason='Clicked button', atomic=True)
+        except BaseException as errror:
+            self.bot.logger.info(f'fuck: {error}')
 
     # @tasks.loop()
     # async def delayed_message(self):
