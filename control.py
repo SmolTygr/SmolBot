@@ -30,6 +30,7 @@ class control(commands.Cog):
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
+        self.bot.logger.info(f'react')
         # Guard statement: Ignore reactions added to messages not the role selection message.
         if payload.message_id != self.role_message:
             return
