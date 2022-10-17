@@ -2,6 +2,7 @@ from discord.ext import commands, tasks
 from discord import ChannelType
 import discord 
 import asyncio
+import json
 
 # Custom module import
 from log import log_command
@@ -13,19 +14,35 @@ class control(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.delayed_message.start()
-    
+
+        self.role_message = '1031657954417586186'
+        self.role_id = '1031658740098801696'
+
     # Check documentation: https://discordpy.readthedocs.io/en/stable/ext/commands/api.html#discord.ext.commands.check
     def _smoltygr_check():
         def predicate(ctx):
             return ctx.message.author.id == 325726203681964043
         return commands.check(predicate)
-    
+
     def _server_owner_check():
         def predicate(ctx):
             return ctx.guild is not None and ctx.guild.owner_id == ctx.author.id
         return commands.check(predicate)
-    
-    
+
+    @commands.Cog.listener()
+    async def on_raw_reaction_add(self, payload):
+
+        # Guard statement: Ignore reactions added to messages not the role selection message.
+        if payload.message_id != self.role_message:
+            return
+
+        guild = discord.utils.get_guild(1016382572776915094)
+
+        if payload.emoji == '🧡':
+            role = discord.utils.get(guild.roles, id=self.role_id)
+            member = guild.get_member(payload.user_id)
+            await member.add_roles(role)
+
     @tasks.loop()
     async def delayed_message(self):
     
