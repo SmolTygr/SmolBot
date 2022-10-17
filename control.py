@@ -34,6 +34,9 @@ class control(commands.Cog):
         if payload.message_id != self.role_message:
             return
 
+        if payload.emoji.name == '🧡':
+            self.bot.logger.info('ding ding ding')
+
         self.bot.logger.info(f'{payload.emoji.name}')
         await payload.member.add_roles(discord.utils.get(payload.member.guild.roles, name='Test'))
 
