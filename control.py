@@ -33,6 +33,7 @@ class control(commands.Cog):
         self.bot.logger.info(f'react')
         # Guard statement: Ignore reactions added to messages not the role selection message.
         if payload.message_id != self.role_message:
+            self.bot.logger.info('bail')
             return
         
         self.bot.logger.info(f'Mange roles permission: {discord.Permissions().manage_roles()}')
