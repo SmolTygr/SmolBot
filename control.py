@@ -27,6 +27,11 @@ class control(commands.Cog):
         def predicate(ctx):
             return ctx.guild is not None and ctx.guild.owner_id == ctx.author.id
         return commands.check(predicate)
+    
+    
+    # Cog error handler
+    async def cog_command_error(self, ctx, error):
+        self.bot.logger.error(f"An error occurred in the Test cog: {error}")
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
