@@ -36,7 +36,7 @@ class control(commands.Cog):
 
         if payload.emoji.name == '🧡':
             role = discord.utils.get(payload.member.guild.roles, name='Test')
-            self.bot.logger.info(role)
+            self.bot.logger.info(f'Role: {role.name} and id: {role.id}')
             await payload.member.add_roles(role)
 
     @tasks.loop()
