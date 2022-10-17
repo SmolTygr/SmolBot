@@ -33,12 +33,20 @@ class control(commands.Cog):
         # Guard statement: Ignore reactions added to messages not the role selection message.
         if payload.message_id != self.role_message:
             return
+        
+        self.bot.logger.info(f'Mange roles permission: {discord.Permissions().manage_roles()}')
+        self.bot.logger.info('Attempting role reaction')
 
         if payload.emoji.name == '🧡':
+            self.bot.logger.info('Found orange heart')
             
-            reactor = payload.guild.get_member(payload.member.id)          
-            role = discord.utils.get(payload.member.guild.roles, name='Test')
-            await reactor.add_roles(role)
+            guild = self.bot.get_guild(payload.guild_id)
+            self.bot.logger.info(f'Got guild with id: {guild.id}')
+            
+            role = discord.utils.get(guild.roles, name='Test')
+            self.bot.logger.info(f'Got Role with id: {role.id}')
+            
+            await payload.member.add_roles(role, reason='Clicked button')
 
     # @tasks.loop()
     # async def delayed_message(self):
