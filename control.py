@@ -35,10 +35,9 @@ class control(commands.Cog):
             return
 
         if payload.emoji.name == '🧡':
-            self.bot.logger.info('ding ding ding')
-
-        self.bot.logger.info(f'{payload.emoji.name}')
-        await payload.member.add_roles(discord.utils.get(payload.member.guild.roles, name='Test'))
+            role = discord.utils.get(payload.member.guild.roles, name='Test')
+            self.bot.logger.info(role)
+            await payload.member.add_roles(role)
 
     @tasks.loop()
     async def delayed_message(self):
