@@ -13,7 +13,7 @@ class control(commands.Cog):
     
     def __init__(self, bot):
         self.bot = bot
-        self.delayed_message.start()
+        # self.delayed_message.start()
 
         self.role_message = 1031657954417586186
 
