@@ -28,6 +28,10 @@ class control(commands.Cog):
             return ctx.guild is not None and ctx.guild.owner_id == ctx.author.id
         return commands.check(predicate)
     
+    
+    @commands.Cog.listener()
+    async def on_command_error(self, ctx, err):
+        print(err)
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
