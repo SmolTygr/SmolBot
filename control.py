@@ -27,11 +27,6 @@ class control(commands.Cog):
         def predicate(ctx):
             return ctx.guild is not None and ctx.guild.owner_id == ctx.author.id
         return commands.check(predicate)
-    
-    
-    @commands.Cog.listener()
-    async def on_command_error(self, ctx, err):
-        print(err)
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
@@ -41,13 +36,17 @@ class control(commands.Cog):
             self.bot.logger.info('bail')
             return
 
-        if payload.emoji.name == '🧡':
-            self.bot.logger.info('Found orange heart')
-            
-            role = discord.utils.get(payload.member.guild, name='Test')
-            self.bot.logger.info(f'Got Role with id: {role.id}')
-            
-            await payload.member.add_roles(role, reason='Clicked button', atomic=True)
+        try:
+            if payload.emoji.name == '🧡':
+                self.bot.logger.info('Found orange heart')
+                
+                role = discord.utils.get(payload.member.guild.roles, name='Test')
+                self.bot.logger.info(f'Got Role with id: {role.id}')
+                
+                await payload.member.add_roles(role, reason='Clicked button', atomic=True)
+                
+        except BaseException as error:
+            print(error)
 
 
     # @tasks.loop()
