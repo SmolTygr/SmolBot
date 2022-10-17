@@ -31,17 +31,17 @@ class control(commands.Cog):
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
+        self.bot.logger.info('Raw reaction listener')
 
         # Guard statement: Ignore reactions added to messages not the role selection message.
         if payload.message_id != self.role_message:
+            self.bot.logger.info(
+                'Reaction not on role selection message. Ignored.')
             return
 
-        guild = discord.utils.get_guild(1016382572776915094)
-
         if payload.emoji == '🧡':
-            role = discord.utils.get(guild.roles, id=self.role_id)
-            member = guild.get_member(payload.user_id)
-            await member.add_roles(role)
+            self.bot.logger.info('Orange heart reaction')
+            await payload.member.add_roles(discord.utils.get(payload.member.guild.roles, name='Test'))
 
     @tasks.loop()
     async def delayed_message(self):
