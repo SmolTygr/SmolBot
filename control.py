@@ -31,29 +31,23 @@ class control(commands.Cog):
     
     # Cog error handler
     async def cog_command_error(self, ctx, error):
-        self.bot.logger.error(f"An error occurred in the Test cog: {error}")
+        self.bot.logger.info(f"An error occurred in the Test cog: {error}")
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
-        self.bot.logger.info(f'react')
+        self.bot.logger.info('Attempting role reaction')
         # Guard statement: Ignore reactions added to messages not the role selection message.
         if payload.message_id != self.role_message:
             self.bot.logger.info('bail')
             return
-        
-        self.bot.logger.info(f'Mange roles permission: {discord.Permissions().manage_roles}')
-        self.bot.logger.info('Attempting role reaction')
-
+    
         if payload.emoji.name == '🧡':
             self.bot.logger.info('Found orange heart')
             
-            guild = self.bot.get_guild(payload.guild_id)
-            self.bot.logger.info(f'Got guild with id: {guild.id}')
-            
-            role = discord.utils.get(guild.roles, name='Test')
+            role = discord.utils.get(payload.member.guild, name='Test')
             self.bot.logger.info(f'Got Role with id: {role.id}')
             
-            await payload.member.add_roles(role, reason='Clicked button')
+            await payload.member.add_roles(role, reason='Clicked button', atomic=True)
 
     # @tasks.loop()
     # async def delayed_message(self):
