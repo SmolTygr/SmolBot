@@ -48,8 +48,8 @@ class control(commands.Cog):
                 self.bot.logger.info(f'Got Role with id: {role.id}')
                 
                 await payload.member.add_roles(role, reason='Clicked button', atomic=True)
-        except BaseException as errror:
-            self.bot.logger.info(f'fuck: {error}')
+        except BaseException as error:
+            print(error)
 
     # @tasks.loop()
     # async def delayed_message(self):
