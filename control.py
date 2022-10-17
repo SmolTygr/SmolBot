@@ -30,15 +30,12 @@ class control(commands.Cog):
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
-        self.bot.logger.info(f'ID: {payload.message_id}')
-
         # Guard statement: Ignore reactions added to messages not the role selection message.
         if payload.message_id != self.role_message:
-            self.bot.logger.info('Reaction not on role selection message. Ignored.')
             return
 
         if payload.emoji == '🧡':
-            self.bot.logger.info('Orange heart reaction')
+            self.bot.logger.info(f'{payload.emoji.name}')
             await payload.member.add_roles(discord.utils.get(payload.member.guild.roles, name='Test'))
 
     @tasks.loop()
