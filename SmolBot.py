@@ -45,8 +45,8 @@ class SmolBot(commands.Bot):
         await self.load_extension('clips')
         await self.load_extension('control')
         await self.load_extension('loose')
-        
-        await self.add_cog(roles(self))
+        await self.load_extension('roles')
+
 
 if __name__ == '__main__':
 
@@ -60,7 +60,6 @@ if __name__ == '__main__':
     # An instance is required, as it has to pass "self" into it.
     # See discord.py API on this
     smolbot = SmolBot(prefix='!', intents=intents, logger=logger)
-    
 
     @smolbot.event
     async def on_ready():
@@ -71,14 +70,15 @@ if __name__ == '__main__':
 
     @smolbot.event
     async def on_command_error(ctx, error):
-        """Method to manage errors inside Cog"""
+        """Method to manage errors inside SmolBot"""
         
         # Record the error and traceback in the logs
         smolbot.logger.error('SmolBot Error : Command "%s" : Server "%s" : Channel: "%s" : User "%s" : %s', ctx.command, ctx.guild.name, ctx.channel.name,  ctx.author.name, error, exc_info=True)
         
-        if ctx.author.id == 325726203681964043:
-            await ctx.message.reply(f'Sorry this command has failed. SmolTygr has been told about it.\n \nThis message will auto-delete in 1 minute', delete_after=120)
+        # Reply to the user
+        await ctx.message.reply(f'Sorry this command has failed. SmolTygr has been told about it.\n \nThis message will auto-delete in 30 seconds', delete_after=30)
         
+        # Send SmolTygr a DM with information directly
         await smolbot.smol_user.send(f'SmolBot error in "{ctx.command}"\n{ctx.guild.name} - {ctx.channel.name}\nCalled by "{ctx.author.name}"\n \n{error}')
         
     # @smolbot.command()

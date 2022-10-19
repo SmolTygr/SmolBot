@@ -25,6 +25,7 @@ class Confirm(discord.ui.View):
     @discord.ui.button(label='Role', style=discord.ButtonStyle.green, custom_id='persistent_view:role')
     async def role(self, interaction, button):
         await interaction.response.send_message('This is geen', ephemeral=True)
-        
-        
 
+
+async def setup(bot):
+    await bot.add_cog(roles(bot))
