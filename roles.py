@@ -11,10 +11,15 @@ class roles(commands.Cog):
     
     @commands.command()
     async def role_embed(self, ctx):
-        embed = discord.Embed(title="Choose your role", description="beep boop") #,color=Hex code
+        embed = discord.Embed(title="Choose your role", description="beep boop", color='xx') #,color=Hex code
         embed.add_field(name="Name", value="you can make as much as fields you like to")
         await ctx.message.channel.send(embed=embed)
-
+        
+    
+    @commands.Cog.listener()
+    async def cog_command_error(self, ctx, error):
+        print(f'Error occured: {error}')
+        await ctx.send(f "An error occurred in the Test cog: {error}")
 
 class Confirm(discord.ui.View):
     def __init__(self):
