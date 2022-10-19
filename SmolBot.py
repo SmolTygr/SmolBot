@@ -73,7 +73,7 @@ if __name__ == '__main__':
     async def on_command_error(ctx, error):
         """Method to manage errors inside Cog"""
         smolbot.logger.error('SmolBot Error : Command "%s" : Server "%s" : Channel: "%s" : User "%s" : %s', ctx.command, ctx.guild.name, ctx.channel.name,  ctx.author.name, error)
-        await smolbot.smol_user.send(f'SmolBot Error\nCommand "{ctx.command}"\nServer "{ctx.guild.name}" - Channel "{ctx.channel.name}"\nUser "{ctx.author.name}"\n{error}')
+        await smolbot.smol_user.send(f'SmolBot Error in "{ctx.command}"\n{ctx.guild.name}-{ctx.channel.name}"\nCalled by "{ctx.author.name}"\n \n{error}')
         
     # @smolbot.command()
     # async def ask(ctx: commands.Context):
