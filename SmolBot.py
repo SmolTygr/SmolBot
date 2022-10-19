@@ -29,7 +29,8 @@ class SmolBot(commands.Bot):
 
         # Store logger here to stop it being parsed to each extension
         self.logger = logger
-        self.smol_user = discord.Client().get_user(325726203681964043)
+        self.client = discord.Client(intents=intents)
+        self.smol_user = self.client.get_user(325726203681964043)
 
         # self._config_path stored as used in control.py 'reset_config'
         self._config_path = os.path.join(
