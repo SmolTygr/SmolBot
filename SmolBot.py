@@ -69,7 +69,15 @@ if __name__ == '__main__':
         
     @smolbot.command()
     async def test_dm(ctx):
+        smolbot.logger.info('Test dm called')
         await smolbot.smol_user.send(f'An error has occured in SmolBot TestCog:')
+        
+        
+    @smolbot.event()
+    async def on_command_error(ctx, error):
+        """Method to manage errors inside Cog"""
+        smolbot.bot.logger.error('Error inside SmolBot: %s', error)
+        await smolbot.smol_user.send(f'An error has occured in SmolBot: {error}')
         
     # @smolbot.command()
     # async def ask(ctx: commands.Context):
