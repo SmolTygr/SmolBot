@@ -18,8 +18,8 @@ class roles(commands.Cog):
         
     async def cog_command_error(self, ctx, error):
         """Method to manage errors inside Cog"""
-        self.bot.logger.error('Error inside commands cog: %s', error)
-        await self.smol_user.send(f'An error has occured in SmolBot TestCog: {error}')
+        self.bot.logger.error('Error inside SmolBot Roles cog: %s', error)
+        await self.smol_user.send(f'An error has occured in SmolBot Roles Cog: {error}')
         
 
 class Confirm(discord.ui.View):

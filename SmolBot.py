@@ -65,15 +65,10 @@ if __name__ == '__main__':
     @smolbot.event
     async def on_ready():
         """Perform actions when bot comes online"""
-        logger.info('SmolBot is now online!')
+        # Using fetch_user as get_user requires the user to be in the cache.
         smolbot.smol_user =  await smolbot.fetch_user(int(325726203681964043))
-        
-    @smolbot.command()
-    async def test_dm(ctx):
-        smolbot.logger.info('Test dm called')
-        await smolbot.smol_user.send(f'An error has occured in SmolBot TestCog:')
-        
-        
+        logger.info('SmolBot is now online!')
+
     @smolbot.event
     async def on_command_error(ctx, error):
         """Method to manage errors inside Cog"""
