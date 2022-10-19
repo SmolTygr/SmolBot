@@ -16,11 +16,6 @@ class roles(commands.Cog):
         embed.add_field(name="Name", value="you can make as much as fields you like to")
         await ctx.message.channel.send(embed=embed)
         
-    async def cog_command_error(self, ctx, error):
-        """Method to manage errors inside Cog"""
-        self.bot.logger.error('Error inside SmolBot Roles cog: %s', error)
-        await self.smol_user.send(f'An error has occured in SmolBot Roles Cog: {error}')
-        
 
 class Confirm(discord.ui.View):
     def __init__(self):

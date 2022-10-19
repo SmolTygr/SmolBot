@@ -66,14 +66,20 @@ if __name__ == '__main__':
     async def on_ready():
         """Perform actions when bot comes online"""
         # Using fetch_user as get_user requires the user to be in the cache.
-        smolbot.smol_user =  await smolbot.fetch_user(int(325726203681964043))
+        smolbot.smol_user =  await smolbot.fetch_user(325726203681964043)
         logger.info('SmolBot is now online!')
 
     @smolbot.event
     async def on_command_error(ctx, error):
         """Method to manage errors inside Cog"""
-        smolbot.logger.error('SmolBot Error : Command "%s" : Server "%s" : Channel: "%s" : User "%s" : %s', ctx.command, ctx.guild.name, ctx.channel.name,  ctx.author.name, error)
-        await smolbot.smol_user.send(f'SmolBot Error in "{ctx.command}"\n{ctx.guild.name}-{ctx.channel.name}"\nCalled by "{ctx.author.name}"\n \n{error}')
+        
+        # Record the error and traceback in the logs
+        smolbot.logger.error('SmolBot Error : Command "%s" : Server "%s" : Channel: "%s" : User "%s" : %s', ctx.command, ctx.guild.name, ctx.channel.name,  ctx.author.name, error, exc_info=True)
+        
+        if ctx.author.id == 325726203681964043:
+            await ctx.message.reply(f'Sorry this command has failed. SmolTygr has been told about it.\n \nThis message will auto-delete in 1 minute', delete_after=120)
+        
+        await smolbot.smol_user.send(f'SmolBot error in "{ctx.command}"\n{ctx.guild.name} - {ctx.channel.name}\nCalled by "{ctx.author.name}"\n \n{error}')
         
     # @smolbot.command()
     # async def ask(ctx: commands.Context):
