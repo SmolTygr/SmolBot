@@ -67,10 +67,9 @@ if __name__ == '__main__':
         """Perform actions when bot comes online"""
         logger.info('SmolBot is now online!')
         
-    @smolbot.command
+    @smolbot.command()
     async def test_dm(ctx):
         smolbot.logger.info('Test dm called')
-        raise AttributeError('test error')
         await smolbot.smol_user.send(f'An error has occured in SmolBot TestCog:')
         
         
