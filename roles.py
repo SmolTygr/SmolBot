@@ -26,5 +26,4 @@ class Confirm(discord.ui.View):
         await interaction.response.send_message('This is geen', ephemeral=True)
         
         
-async def setup(bot):
-    await bot.add_cog(roles(bot))
+

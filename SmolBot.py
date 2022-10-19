@@ -4,6 +4,8 @@ import discord
 from discord.ext import commands
 import configparser
 
+from roles import roles
+
 # Custom modules
 from sql import database_connect
 from log import setup_logging
@@ -41,7 +43,6 @@ class SmolBot(commands.Bot):
         await self.load_extension('clips')
         await self.load_extension('control')
         await self.load_extension('loose')
-        await self.load_extension('roles')    
 
 if __name__ == '__main__':
 
@@ -55,6 +56,7 @@ if __name__ == '__main__':
     # An instance is required, as it has to pass "self" into it.
     # See discord.py API on this
     smolbot = SmolBot(prefix='!', intents=intents, logger=logger)
+    smolbot.add_cog(roles(smolbot))
 
     @smolbot.event
     async def on_ready():
