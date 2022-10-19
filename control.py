@@ -30,23 +30,16 @@ class control(commands.Cog):
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
-        self.bot.logger.info('Attempting role reaction')
         # Guard statement: Ignore reactions added to messages not the role selection message.
         if payload.message_id != self.role_message:
-            self.bot.logger.info('bail')
             return
 
-        try:
-            if payload.emoji.name == '🧡':
-                self.bot.logger.info('Found orange heart')
-                
-                role = discord.utils.get(payload.member.guild.roles, name='Test')
-                self.bot.logger.info(f'Got Role with id: {role.id}')
-                
-                await payload.member.add_roles(role, reason='Clicked button', atomic=True)
-                
-        except BaseException as error:
-            print(error)
+        if payload.emoji.name == '🧡':
+            self.bot.logger.info('Found orange heart')
+            
+            role = discord.utils.get(payload.member.guild.roles, name='Test')           
+            await payload.member.add_roles(role, reason='Clicked button', atomic=True)
+
 
 
     # @tasks.loop()

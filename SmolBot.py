@@ -43,6 +43,27 @@ class SmolBot(commands.Bot):
         await self.load_extension('loose')
 
 
+class Confirm(discord.ui.View):
+    def __init__(self):
+        super().__init__()
+        self.value = None
+        
+    # When the confirm button is pressed, set the inner value to `True` and
+        # stop the View from listening to more input.
+        # We also send the user an ephemeral message that we're confirming their choice.
+        @discord.ui.button(label='Confirm', style=discord.ButtonStyle.green)
+        async def confirm(self, interaction: discord.Interaction, button: discord.ui.Button):
+            await interaction.response.send_message('Confirming', ephemeral=True)
+            self.value = True
+            self.stop()
+
+        # This one is similar to the confirmation button except sets the inner value to `False`
+        @discord.ui.button(label='Cancel', style=discord.ButtonStyle.grey)
+        async def cancel(self, interaction: discord.Interaction, button: discord.ui.Button):
+            await interaction.response.send_message('Cancelling', ephemeral=True)
+            self.value = False
+            self.stop()        
+
 if __name__ == '__main__':
 
     token_path = os.path.join(os.path.dirname(__file__), 'token.txt')
@@ -60,5 +81,20 @@ if __name__ == '__main__':
     async def on_ready():
         """Perform actions when bot comes online"""
         logger.info('SmolBot is now online!')
+        
+        
+    @smolbot.command()
+    async def ask(ctx: commands.Context):
+        
+        view = Confirm()
+        await ctx.send('Question?', view=view)
+        await view.wait()
+        
+        if view.value is None:
+            print('Time out')
+        elif view.value:
+            print('Conf')
+        else:
+            print('cancelled')
 
     smolbot.run(TOKEN, log_handler=None)
