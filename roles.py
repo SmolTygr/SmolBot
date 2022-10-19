@@ -19,7 +19,7 @@ class roles(commands.Cog):
     @commands.Cog.listener()
     async def cog_command_error(self, ctx, error):
         print(f'Error occured: {error}')
-        await ctx.send(f "An error occurred in the Test cog: {error}")
+        await ctx.send(f"An error occurred in the Test cog: {error}")
 
 class Confirm(discord.ui.View):
     def __init__(self):
