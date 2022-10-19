@@ -26,11 +26,11 @@ class Confirm(discord.ui.View):
         super().__init__(timeout=None)
         self.value = None
         
-    @discord.ui.button(label=' Soapy', style=discord.ButtonStyle.green, custom_id='persistent_view:role', emoji='🧼')
+    @discord.ui.button(label=' Soapy', style=discord.ButtonStyle.gray, custom_id='persistent_view:soap', emoji='🧼')
     async def role(self, interaction, button):
         await set_role(interaction=interaction, role_name='Soaps')      
 
-    @discord.ui.button(label=' Tiger', style=discord.ButtonStyle.green, custom_id='persistent_view:role', emoji='🐯')
+    @discord.ui.button(label=' Tiger', style=discord.ButtonStyle.gray, custom_id='persistent_view:tiger', emoji='🐯')
     async def role(self, interaction, button):
         await set_role(interaction=interaction, role_name='Tigers')    
 
