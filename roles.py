@@ -12,9 +12,9 @@ class roles(commands.Cog):
     
     @commands.command()
     async def role_embed(self, ctx):
-        embed = discord.Embed(title="Choose your role", description="beep boop", color=0xFFC0CB)
-        embed.add_field(name="Tiger Role", value="🐯Be a smol tiger", inline=False)
-        embed.add_field(name="Soap Role", value="🧼Be a smol tiger", inline=False)
+        embed = discord.Embed(title="Choose your role", description="", color=0xFFC0CB)
+        embed.add_field(name="🐯 Tiger Role", value="Be a smol tiger", inline=False)
+        embed.add_field(name="🧼 Soap Role", value="Be a soap boy", inline=False)
         
         
         embed.set_footer(text='For any questions please ask: SmolTygr')
