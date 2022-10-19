@@ -72,6 +72,11 @@ if __name__ == '__main__':
     async def on_command_error(ctx, error):
         """Method to manage errors inside SmolBot"""
         
+        if isinstance(error, commands.CommandNotFound):
+            await ctx.message.reply(f"Sorry i don't know that command.\n \nUse !help for a list of all commands.\n \nThis message auto-deletes in 30 seconds",
+                                    delete_after=30)
+            return
+        
         # Record the error and traceback in the logs
         smolbot.logger.error('SmolBot Error : Command "%s" : Server "%s" : Channel: "%s" : User "%s" : %s', ctx.command, ctx.guild.name, ctx.channel.name,  ctx.author.name, error, exc_info=True)
         
