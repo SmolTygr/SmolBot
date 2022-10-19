@@ -74,7 +74,7 @@ if __name__ == '__main__':
         
         if isinstance(error, commands.CommandNotFound):
             await ctx.message.reply(f"Sorry i don't know that command.\n \nUse !help for a list of all commands.\n \nThis message auto-deletes in 30 seconds",
-                                    delete_after=30)
+                                    delete_after=30, ephemeral=True)
             return
         
         # Record the error and traceback in the logs
