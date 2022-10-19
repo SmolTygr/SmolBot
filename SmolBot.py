@@ -66,7 +66,7 @@ if __name__ == '__main__':
     async def on_ready():
         """Perform actions when bot comes online"""
         logger.info('SmolBot is now online!')
-        smolbot.smol_user = smolbot.fetch_user(int(325726203681964043))
+        smolbot.smol_user =  await smolbot.fetch_user(int(325726203681964043))
         
     @smolbot.command()
     async def test_dm(ctx):
