@@ -70,6 +70,7 @@ if __name__ == '__main__':
     @smolbot.command
     async def test_dm(ctx):
         smolbot.logger.info('Test dm called')
+        raise AttributeError('test error')
         await smolbot.smol_user.send(f'An error has occured in SmolBot TestCog:')
         
         
