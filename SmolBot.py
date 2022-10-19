@@ -41,19 +41,7 @@ class SmolBot(commands.Bot):
         await self.load_extension('clips')
         await self.load_extension('control')
         await self.load_extension('loose')
-        
-        self.add_view(Confirm(), message_id=1032335007676637224)
-
-
-class Confirm(discord.ui.View):
-    def __init__(self):
-        super().__init__(timeout=None)
-        self.value = None
-        
-    @discord.ui.button(label='Role', style=discord.ButtonStyle.green, custom_id='persistent_view:role')
-    async def role(self, interaction, button):
-        await interaction.response.send_message('This is geen', ephemeral=True)
-       
+        await self.load_extension('roles')    
 
 if __name__ == '__main__':
 
@@ -73,8 +61,8 @@ if __name__ == '__main__':
         """Perform actions when bot comes online"""
         logger.info('SmolBot is now online!')
         
-    @smolbot.command()
-    async def ask(ctx: commands.Context):
-        await ctx.send('...', view=Confirm())
+    # @smolbot.command()
+    # async def ask(ctx: commands.Context):
+    #     await ctx.send('...', view=Confirm())
 
     smolbot.run(TOKEN, log_handler=None)
