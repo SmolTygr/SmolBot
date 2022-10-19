@@ -1,7 +1,7 @@
 import logging
 
 import discord
-from discord import commands
+from discord.ext import commands
 
 class roles(commands.Cog):
     
