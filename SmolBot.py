@@ -68,7 +68,7 @@ if __name__ == '__main__':
         logger.info('SmolBot is now online!')
         
         client = discord.Client(intents=intents)
-        smolbot.smol_user = await client.get_user(325726203681964043)
+        smolbot.smol_user = client.fetch_user(int(325726203681964043))
         
     @smolbot.command()
     async def test_dm(ctx):
