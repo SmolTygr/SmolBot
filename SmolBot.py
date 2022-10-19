@@ -29,9 +29,9 @@ class SmolBot(commands.Bot):
 
         # Store logger here to stop it being parsed to each extension
         self.logger = logger
-        self.client = discord.Client(intents=intents)
-        self.smol_user = self.client.fetch_user(325726203681964043)
-
+        
+        self.smol_user = None  # Set on_ready() event.
+    
         # self._config_path stored as used in control.py 'reset_config'
         self._config_path = os.path.join(
             os.path.dirname(__file__), 'config.ini')
@@ -66,6 +66,9 @@ if __name__ == '__main__':
     async def on_ready():
         """Perform actions when bot comes online"""
         logger.info('SmolBot is now online!')
+        
+        client = discord.Client(intents=intents)
+        smolbot.smol_user = await client.fetch_user(325726203681964043)
         
     @smolbot.command()
     async def test_dm(ctx):
