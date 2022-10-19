@@ -73,9 +73,6 @@ class control(commands.Cog):
             return await ctx.message.channel.send(f'Time out. Command cancelled')
         
         await ctx.message.channel.send(f'Thank you. I have got: "{ctx.message}" at {date_time}')
-        
-        
-            
             
     @commands.command()
     async def delay_message(self, ctx, *, message: str):
@@ -84,8 +81,6 @@ class control(commands.Cog):
             self.delayed_message.restart()
         else:
             self.delayed_message.start()
-            
-        
             
     @commands.command()
     @commands.check_any(_smoltygr_check())

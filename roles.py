@@ -2,6 +2,7 @@ import logging
 
 import discord
 from discord.ext import commands
+from log import log_command
 
 class roles(commands.Cog):
     
@@ -16,8 +17,10 @@ class roles(commands.Cog):
         await ctx.message.channel.send(embed=embed)
         
     async def cog_command_error(self, ctx, error):
-        print(f'Error occured: {error}')
-        await ctx.send(f"An error occurred in the Test cog: {error}")
+        """Method to manage errors inside Cog"""
+        self.bot.logger.error('Error inside commands cog: %s', error)
+        await self.smol_user.send(f'An error has occured in SmolBot TestCog: {error}')
+        
 
 class Confirm(discord.ui.View):
     def __init__(self):

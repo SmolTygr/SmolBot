@@ -29,6 +29,7 @@ class SmolBot(commands.Bot):
 
         # Store logger here to stop it being parsed to each extension
         self.logger = logger
+        self.smol_user = discord.client.get_user(325726203681964043)
 
         # self._config_path stored as used in control.py 'reset_config'
         self._config_path = os.path.join(
@@ -64,6 +65,10 @@ if __name__ == '__main__':
     async def on_ready():
         """Perform actions when bot comes online"""
         logger.info('SmolBot is now online!')
+        
+    @smolbot.command()
+    async def test_dm(ctx)
+        await smolbot.smol_user.send(f'An error has occured in SmolBot TestCog:')
         
     # @smolbot.command()
     # async def ask(ctx: commands.Context):
