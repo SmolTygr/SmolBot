@@ -67,7 +67,7 @@ if __name__ == '__main__':
         logger.info('SmolBot is now online!')
         
     @smolbot.command()
-    async def test_dm(ctx)
+    async def test_dm(ctx):
         await smolbot.smol_user.send(f'An error has occured in SmolBot TestCog:')
         
     # @smolbot.command()
