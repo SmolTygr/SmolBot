@@ -28,10 +28,20 @@ class Confirm(discord.ui.View):
         
     @discord.ui.button(label='Role', style=discord.ButtonStyle.green, custom_id='persistent_view:role', emoji='🧼')
     async def role(self, interaction, button):
-        role = discord.utils.get(interaction.guild.roles, name='Test')
-        await interaction.user.add_roles(role, reason='Clicked the roll button')
-        await interaction.response.send_message('This is green', ephemeral=True)
+        await set_role(interaction=interaction, role_name='Test')      
 
+async def set_role(interaction, role_name):
+    """Set a user role in a server"""
+    
+    role = discord.utils.get(interaction.guild.roles, name=role_name)
+    
+    if role in interaction.user.roles:
+        await interaction.user.remove_roles(role, reason='Click the role button')
+        await interaction.response.send_message(f'You have been removed from the role: {role_name}', ephemeral=True)
+    
+    else:
+        await interaction.user.add_roles(role, reason='Clicked the roll button')
+        await interaction.response.send_message(f'You have been added to the role: {role_name}', ephemeral=True)
 
 async def setup(bot):
     await bot.add_cog(roles(bot))
