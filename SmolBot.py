@@ -42,7 +42,7 @@ class SmolBot(commands.Bot):
         await self.load_extension('control')
         await self.load_extension('loose')
         
-        self.add_view(Confirm())
+        self.add_view(Confirm(), message_id=1032335007676637224)
 
 
 class Confirm(discord.ui.View):
