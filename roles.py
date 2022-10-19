@@ -11,7 +11,7 @@ class roles(commands.Cog):
     
     @commands.command()
     async def role_embed(self, ctx):
-        embed = discord.Embed(title="Choose your role", description="beep boop", color='#FFC0CB') #,color=Hex code
+        embed = discord.Embed(title="Choose your role", description="beep boop") #,color=Hex code
         embed.add_field(name="Name", value="you can make as much as fields you like to")
         await ctx.message.channel.send(embed=embed)
 
