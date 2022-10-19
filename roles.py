@@ -28,6 +28,8 @@ class Confirm(discord.ui.View):
         
     @discord.ui.button(label='Role', style=discord.ButtonStyle.green, custom_id='persistent_view:role', emoji='🧼')
     async def role(self, interaction, button):
+        role = discord.utils.get(interaction.guild.roles, name='Test')
+        await interaction.user.add_roles(role, reason='Clicked the roll button')
         await interaction.response.send_message('This is green', ephemeral=True)
 
 
