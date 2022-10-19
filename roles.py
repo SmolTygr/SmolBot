@@ -13,8 +13,12 @@ class roles(commands.Cog):
     @commands.command()
     async def role_embed(self, ctx):
         embed = discord.Embed(title="Choose your role", description="beep boop", color=0xFFC0CB)
-        embed.add_field(name="Name", value="you can make as much as fields you like to")
-        await ctx.message.channel.send(embed=embed)
+        embed.add_field(name="Tiger Role", value="🐯Be a smol tiger", inline=False)
+        embed.add_field(name="Soap Role", value="🧼Be a smol tiger", inline=False)
+        
+        
+        embed.set_footer(text='For any questions please ask: SmolTygr')
+        await ctx.message.channel.send(embed=embed, view=Confirm())
         
 
 class Confirm(discord.ui.View):
@@ -22,9 +26,9 @@ class Confirm(discord.ui.View):
         super().__init__(timeout=None)
         self.value = None
         
-    @discord.ui.button(label='Role', style=discord.ButtonStyle.green, custom_id='persistent_view:role')
+    @discord.ui.button(label='Role', style=discord.ButtonStyle.green, custom_id='persistent_view:role', emoji='🧼')
     async def role(self, interaction, button):
-        await interaction.response.send_message('This is geen', ephemeral=True)
+        await interaction.response.send_message('This is green', ephemeral=True)
 
 
 async def setup(bot):

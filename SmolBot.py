@@ -4,7 +4,7 @@ import discord
 from discord.ext import commands
 import configparser
 
-from roles import roles
+from roles import Confirm
 
 # Custom modules
 from sql import database_connect
@@ -46,6 +46,8 @@ class SmolBot(commands.Bot):
         await self.load_extension('control')
         await self.load_extension('loose')
         await self.load_extension('roles')
+        
+        self.add_view(Confirm())
 
 
 if __name__ == '__main__':
