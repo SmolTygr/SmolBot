@@ -43,6 +43,8 @@ class SmolBot(commands.Bot):
         await self.load_extension('clips')
         await self.load_extension('control')
         await self.load_extension('loose')
+        
+        await self.add_cog(roles(self))
 
 if __name__ == '__main__':
 
@@ -56,7 +58,7 @@ if __name__ == '__main__':
     # An instance is required, as it has to pass "self" into it.
     # See discord.py API on this
     smolbot = SmolBot(prefix='!', intents=intents, logger=logger)
-    smolbot.add_cog(roles(smolbot))
+    
 
     @smolbot.event
     async def on_ready():
