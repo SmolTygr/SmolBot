@@ -47,7 +47,7 @@ class SmolBot(commands.Bot):
         await self.load_extension('loose')
         await self.load_extension('roles')
         
-        self.add_view(Confirm(), message_id=1032395498646143098)
+        self.add_view(Confirm())  # message_id=###
 
 
 if __name__ == '__main__':
