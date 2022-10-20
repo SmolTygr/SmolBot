@@ -12,7 +12,7 @@ class roles(commands.Cog):
     @commands.command()
     async def role_embed(self, ctx):
         embed = discord.Embed(title="Choose your role\t\t\t\t ",
-                              description="",
+                              description="Press the buttons below to toggle the following roles.\b\u200B\bYou will be sent a 'hidden' message below by the bot only visible to you, telling you if you are joined/left a role",
                               color=0xFFC0CB)
         
         embed.add_field(name="🎥 Go Live",
