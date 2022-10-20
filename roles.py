@@ -16,15 +16,15 @@ class roles(commands.Cog):
                               color=0xFFC0CB)
         
         embed.add_field(name="🎥 Go Live",
-                        value="Get pinged when Smol goes live\n \n",
+                        value="Get pinged when Smol goes live\n",
                         inline=False)
         
         embed.add_field(name="🍆🧼 Soapy Boys",
-                        value="Get Soapy and have access to the NSFW channel\n \n",
+                        value="Get Soapy and have access to the NSFW channel\n",
                         inline=False)
 
         embed.add_field(name="🤖 Bot Lovers",
-                        value="View all the SmolBot related channels\n \n",
+                        value="View all the SmolBot related channels\n",
                         inline=False)       
                 
         embed.set_footer(text='For any questions please ask: SmolTygr')
