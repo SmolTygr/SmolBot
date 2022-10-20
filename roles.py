@@ -16,15 +16,21 @@ class roles(commands.Cog):
                               color=0xFFC0CB)
         
         embed.add_field(name="🎥 Go Live",
-                        value="Get pinged when Smol goes live\n",
+                        value="Get pinged when Smol goes live",
                         inline=False)
         
+        # Add an empty space between fields using a sneaky hidden field
+        embed.add_field(name="\u200B", value="\u200B", inline=False)
+        
         embed.add_field(name="🍆🧼 Soapy Boys",
-                        value="Get Soapy and have access to the NSFW channel\n",
+                        value="Get Soapy and have access to the NSFW channel",
                         inline=False)
+        
+        # Add an empty space between fields using a sneaky hidden field
+        embed.add_field(name="\u200B", value="\u200B", inline=False)
 
         embed.add_field(name="🤖 Bot Lovers",
-                        value="View all the SmolBot related channels\n",
+                        value="View all the SmolBot related channels",
                         inline=False)       
                 
         embed.set_footer(text='For any questions please ask: SmolTygr')
