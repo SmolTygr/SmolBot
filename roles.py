@@ -12,8 +12,10 @@ class roles(commands.Cog):
     @commands.command()
     async def role_embed(self, ctx):
         embed = discord.Embed(title="Choose your role\t\t\t\t ",
-                              description="Press the buttons below to toggle the following roles.\b\u200B\bYou will be sent a 'hidden' message below by the bot only visible to you, telling you if you are joined/left a role",
+                              description="Press the buttons below to toggle the following roles.\nYou will be sent a 'hidden' message below by the bot only visible to you, telling you if you are joined/left a role",
                               color=0xFFC0CB)
+        # Add an empty space between fields using a sneaky hidden field
+        embed.add_field(name="\u200B", value="\u200B", inline=False)
         
         embed.add_field(name="🎥 Go Live",
                         value="Get pinged when Smol goes live",
@@ -32,7 +34,10 @@ class roles(commands.Cog):
         embed.add_field(name="🤖 Bot Lovers",
                         value="View all the SmolBot related channels",
                         inline=False)       
-                
+        
+        # Add an empty space between fields using a sneaky hidden field
+        embed.add_field(name="\u200B", value="\u200B", inline=False)
+        
         embed.set_footer(text='For any questions please ask: SmolTygr')
         await ctx.message.channel.send(embed=embed, view=Confirm())
         
