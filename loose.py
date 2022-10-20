@@ -28,11 +28,8 @@ class loose(commands.Cog):
         log_command(ctx, self.bot.logger, 'what_game')
         await ctx.message.reply('You want a game to play? It has to be Bugsnax!')
          
-
     @commands.command()
     async def ciri(self, ctx):
-
-
         # Get a random .png from Ciri folder
         images = os.listdir(os.path.join(os.path.dirname(__file__), 'ciri'))
         images = [file for file in images if file.endswith('.png')]

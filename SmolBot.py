@@ -7,7 +7,6 @@ import configparser
 from roles import Confirm
 
 # Custom modules
-from sql import database_connect
 from log import setup_logging
 
 
@@ -29,7 +28,6 @@ class SmolBot(commands.Bot):
 
         # Store logger here to stop it being parsed to each extension
         self.logger = logger
-        
         self.smol_user = None  # Set on_ready() event.
     
         # self._config_path stored as used in control.py 'reset_config'
@@ -38,8 +36,6 @@ class SmolBot(commands.Bot):
         self.config = configparser.ConfigParser()
         self.config.read(self._config_path)
         
-        # Connect to database
-        self.databse = database_connect(os.path.join(os.path.dirname(__file__), 'smolbot.sqlite'))
 
     async def setup_hook(self):
         await self.load_extension('clips')
