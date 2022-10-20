@@ -40,7 +40,7 @@ class Confirm(discord.ui.View):
     async def live(self, interaction, button):
         await set_role(interaction=interaction, role_name='GoLive')      
 
-    @discord.ui.button(label=' Get Soapy', style=discord.ButtonStyle.gray, custom_id='persistent_view:soap', emoji='🍆🧼')
+    @discord.ui.button(label=' Get Soapy', style=discord.ButtonStyle.gray, custom_id='persistent_view:soap', emoji='🧼')
     async def soap(self, interaction, button):
         await set_role(interaction=interaction, role_name='Soapy Boys')
         
