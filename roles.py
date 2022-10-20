@@ -8,15 +8,25 @@ class roles(commands.Cog):
     
     def __init__(self, bot):
         self.bot = bot
-        
-    
+
     @commands.command()
     async def role_embed(self, ctx):
-        embed = discord.Embed(title="Choose your role\t\t\t\t ", description="", color=0xFFC0CB)
-        embed.add_field(name="🐯 Tiger Role", value="Be a smol tiger", inline=False)
-        embed.add_field(name="🧼 Soap Role", value="Be a soap boy", inline=False)
+        embed = discord.Embed(title="Choose your role\t\t\t\t ",
+                              description="",
+                              color=0xFFC0CB)
         
+        embed.add_field(name="🎥 Go Live",
+                        value="Get pinged when Smol goes live",
+                        inline=False)
         
+        embed.add_field(name="🍆🧼 Soapy Boys",
+                        value="Get Soapy and have access to the NSFW channel",
+                        inline=False)
+
+        embed.add_field(name="🤖 Bot Lovers",
+                        value="View all the SmolBot related channels",
+                        inline=False)       
+                
         embed.set_footer(text='For any questions please ask: SmolTygr')
         await ctx.message.channel.send(embed=embed, view=Confirm())
         
@@ -26,13 +36,17 @@ class Confirm(discord.ui.View):
         super().__init__(timeout=None)
         self.value = None
         
-    @discord.ui.button(label=' Soapy', style=discord.ButtonStyle.gray, custom_id='persistent_view:soap', emoji='🧼')
+    @discord.ui.button(label=' Go Live', style=discord.ButtonStyle.gray, custom_id='persistent_view:golive', emoji='🎥')
     async def soap(self, interaction, button):
-        await set_role(interaction=interaction, role_name='Soaps')      
+        await set_role(interaction=interaction, role_name='GoLive')      
 
-    @discord.ui.button(label=' Tiger', style=discord.ButtonStyle.gray, custom_id='persistent_view:tiger', emoji='🐯')
+    @discord.ui.button(label=' Get Soapy', style=discord.ButtonStyle.gray, custom_id='persistent_view:soap', emoji='🍆🧼')
     async def tiger(self, interaction, button):
-        await set_role(interaction=interaction, role_name='Tigers')    
+        await set_role(interaction=interaction, role_name='Soapy Boys')
+        
+    @discord.ui.button(label=' Gimme Bots', style=discord.ButtonStyle.gray, custom_id='persistent_view:bots', emoji='🤖')
+    async def tiger(self, interaction, button):
+        await set_role(interaction=interaction, role_name='Bot Lovers')    
 
 async def set_role(interaction, role_name):
     """Set a user role in a server"""
