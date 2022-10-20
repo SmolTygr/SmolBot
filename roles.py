@@ -16,15 +16,15 @@ class roles(commands.Cog):
                               color=0xFFC0CB)
         
         embed.add_field(name="🎥 Go Live",
-                        value="Get pinged when Smol goes live",
+                        value="Get pinged when Smol goes live\n \n",
                         inline=False)
         
         embed.add_field(name="🍆🧼 Soapy Boys",
-                        value="Get Soapy and have access to the NSFW channel",
+                        value="Get Soapy and have access to the NSFW channel\n \n",
                         inline=False)
 
         embed.add_field(name="🤖 Bot Lovers",
-                        value="View all the SmolBot related channels",
+                        value="View all the SmolBot related channels\n \n",
                         inline=False)       
                 
         embed.set_footer(text='For any questions please ask: SmolTygr')
@@ -37,15 +37,15 @@ class Confirm(discord.ui.View):
         self.value = None
         
     @discord.ui.button(label=' Go Live', style=discord.ButtonStyle.gray, custom_id='persistent_view:golive', emoji='🎥')
-    async def soap(self, interaction, button):
+    async def live(self, interaction, button):
         await set_role(interaction=interaction, role_name='GoLive')      
 
     @discord.ui.button(label=' Get Soapy', style=discord.ButtonStyle.gray, custom_id='persistent_view:soap', emoji='🍆🧼')
-    async def tiger(self, interaction, button):
+    async def soap(self, interaction, button):
         await set_role(interaction=interaction, role_name='Soapy Boys')
         
     @discord.ui.button(label=' Gimme Bots', style=discord.ButtonStyle.gray, custom_id='persistent_view:bots', emoji='🤖')
-    async def tiger(self, interaction, button):
+    async def bot(self, interaction, button):
         await set_role(interaction=interaction, role_name='Bot Lovers')    
 
 async def set_role(interaction, role_name):
