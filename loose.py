@@ -25,11 +25,13 @@ class loose(commands.Cog):
         
     @commands.command(aliases=['suggest_a_game'])
     async def what_game(self, ctx):
+        """Find out what game to play"""
         log_command(ctx, self.bot.logger, 'what_game')
         await ctx.message.reply('You want a game to play? It has to be Bugsnax!')
          
     @commands.command()
     async def ciri(self, ctx):
+        """Get a random ciri photo"""
         # Get a random .png from Ciri folder
         images = os.listdir(os.path.join(os.path.dirname(__file__), 'ciri'))
         images = [file for file in images if file.endswith('.png')]
@@ -45,6 +47,7 @@ class loose(commands.Cog):
 
     @commands.command()
     async def cool(self, ctx):
+        """Find out how cool you are"""
         log_command(ctx, self.bot.logger, 'cool')
 
         if str(ctx.author)[:-5] == 'Smol_Tygr':

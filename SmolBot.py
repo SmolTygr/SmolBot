@@ -9,10 +9,8 @@ from roles import Confirm
 # Custom modules
 from log import setup_logging
 
-
 # Setup Logging
 logger = setup_logging()
-
 
 # Intents
 intents = discord.Intents.default()
