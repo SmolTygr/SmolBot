@@ -60,7 +60,7 @@ if __name__ == '__main__':
         smolbot.smol_user =  await smolbot.fetch_user(325726203681964043)
         logger.info('SmolBot is now online!')
         
-    @smolbot.event
+    @smolbot.command()
     async def borby():
         raise RuntimeError('Oh no, it is borby')
 
