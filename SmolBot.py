@@ -17,12 +17,16 @@ intents = discord.Intents.default()
 intents.message_content = True
 
 
+
 class SmolBot(commands.Bot):
 
     def __init__(self, prefix: str, intents: discord.Intents, logger: logging.Logger):
-
         # Call commands.Bot __init__
         super().__init__(command_prefix=prefix, intents=intents, logger=logger)
+        
+        # Get the OATH2 TOKEN to connect bot
+        with open(os.path.join(os.path.dirname(__file__), 'token.txt'), 'r') as file:
+            TOKEN = file.readline()
 
         # Store logger here to stop it being parsed to each extension
         self.logger = logger
@@ -33,6 +37,8 @@ class SmolBot(commands.Bot):
             os.path.dirname(__file__), 'config.ini')
         self.config = configparser.ConfigParser()
         self.config.read(self._config_path)
+        
+        self.run(TOKEN, log_handler=None)
         
 
     async def setup_hook(self):
@@ -45,13 +51,6 @@ class SmolBot(commands.Bot):
 
 
 if __name__ == '__main__':
-
-    token_path = os.path.join(os.path.dirname(__file__), 'token.txt')
-
-    # Get the OATH2 TOKEN to connect bot
-    with open(token_path, 'r') as file:
-        TOKEN = file.readline()
-
     # Have to create bot instance here, for .command/.event dectorators.
     # An instance is required, as it has to pass "self" into it.
     # See discord.py API on this
@@ -63,6 +62,10 @@ if __name__ == '__main__':
         # Using fetch_user as get_user requires the user to be in the cache.
         smolbot.smol_user =  await smolbot.fetch_user(325726203681964043)
         logger.info('SmolBot is now online!')
+        
+    @smolbot.event
+    async def borby():
+        raise RuntimeError('Oh no, it is borby')
 
     @smolbot.event
     async def on_command_error(ctx, error):
@@ -81,9 +84,3 @@ if __name__ == '__main__':
         
         # Send SmolTygr a DM with information directly
         await smolbot.smol_user.send(f'SmolBot error in "{ctx.command}"\n{ctx.guild.name} - {ctx.channel.name}\nCalled by "{ctx.author.name}"\n \n{error}')
-        
-    # @smolbot.command()
-    # async def ask(ctx: commands.Context):
-    #     await ctx.send('...', view=Confirm())
-
-    smolbot.run(TOKEN, log_handler=None)
