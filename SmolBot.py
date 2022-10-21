@@ -62,7 +62,8 @@ if __name__ == '__main__':
         
     @smolbot.command()
     async def borby(ctx):
-        raise RuntimeError('Oh no, it is borby')
+        await ctx.message.reply('Closing!')
+        await smolbot.close()
 
     @smolbot.event
     async def on_command_error(ctx, error):
