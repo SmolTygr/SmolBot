@@ -62,8 +62,12 @@ if __name__ == '__main__':
         
     @smolbot.command()
     async def borby(ctx):
-        await ctx.message.reply('Closing!')
-        await smolbot.close()
+        if ctx.message.author.id == 325726203681964043:
+            await ctx.message.reply('Closing!')
+            await smolbot.close()
+        
+        else:
+            await ctx.message.reply('no! >:(')
 
     @smolbot.event
     async def on_command_error(ctx, error):
