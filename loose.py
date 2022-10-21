@@ -50,7 +50,7 @@ class loose(commands.Cog):
         """Find out how cool you are"""
         log_command(ctx, self.bot.logger, 'cool')
 
-        if str(ctx.author)[:-5] == 'Smol_Tygr':
+        if ctx.author.id == 325726203681964043:
             await ctx.send('Smol is the coolest. No need to even check')
             return None
 
