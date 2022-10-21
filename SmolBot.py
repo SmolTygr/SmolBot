@@ -61,7 +61,7 @@ if __name__ == '__main__':
         logger.info('SmolBot is now online!')
         
     @smolbot.command()
-    async def borby():
+    async def borby(ctx):
         raise RuntimeError('Oh no, it is borby')
 
     @smolbot.event
