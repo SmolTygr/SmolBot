@@ -83,4 +83,4 @@ if __name__ == '__main__':
         await smolbot.smol_user.send(f'SmolBot error in "{ctx.command}"\n{ctx.guild.name} - {ctx.channel.name}\nCalled by "{ctx.author.name}"\n \n{error}')
 
 
-    self.run(TOKEN, log_handler=None)
+    smolbot.run(TOKEN, log_handler=None)
