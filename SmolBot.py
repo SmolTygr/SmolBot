@@ -16,8 +16,6 @@ logger = setup_logging()
 intents = discord.Intents.default()
 intents.message_content = True
 
-
-
 class SmolBot(commands.Bot):
 
     def __init__(self, prefix: str, intents: discord.Intents, logger: logging.Logger):
@@ -60,7 +58,7 @@ if __name__ == '__main__':
     async def on_ready():
         """Perform actions when bot comes online"""
         # Using fetch_user as get_user requires the user to be in the cache.
-        smolbot.smol_user =  await smolbot.fetch_user(325726203681964043)
+        # smolbot.smol_user =  await smolbot.fetch_user(325726203681964043)
         logger.info('SmolBot is now online!')
         
     @smolbot.event
