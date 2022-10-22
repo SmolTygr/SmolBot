@@ -40,8 +40,7 @@ class loose(commands.Cog):
         random_image_path = os.path.join(os.path.dirname(__file__), 'ciri', random_image)
 
         file = discord.File(random_image_path, 'ciri.png')
-        embed = discord.Embed(title='Ciri',
-                            description='Have a free ciri photo!')
+        embed = discord.Embed(title='Ciri', description='Have a free ciri photo!')
         embed.set_image(url="attachment://ciri.png")
         await ctx.message.reply(file=file, embed=embed)
 
@@ -50,10 +49,11 @@ class loose(commands.Cog):
         """Find out how cool you are"""
         log_command(ctx, self.bot.logger, 'cool')
 
+        # Catch 'SmoLTygr' - Don't continue on for this person
         if ctx.author.id == 325726203681964043:
             await ctx.send('Smol is the coolest. No need to even check')
-            return None
-
+            return
+        
         coolness = random.randint(0, 101)
         message = "Function has broken. Balls."
 

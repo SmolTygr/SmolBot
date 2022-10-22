@@ -63,11 +63,10 @@ if __name__ == '__main__':
     @smolbot.command()
     async def borby(ctx):
         if ctx.message.author.id == 325726203681964043:
-            await ctx.message.reply('Closing!')
-            await smolbot.close()
-        
+            await ctx.message.reply('Raising error!')
+            raise RuntimeError('Oh no, it is borby')
         else:
-            await ctx.message.reply('no! >:(')
+            await ctx.message.reply('no! No borby command for you >:(')
 
     @smolbot.event
     async def on_command_error(ctx, error):
@@ -84,8 +83,15 @@ if __name__ == '__main__':
         # Reply to the user
         await ctx.message.reply(f'Sorry this command has failed. SmolTygr has been told about it.\n \nThis message will auto-delete in 30 seconds', delete_after=30)
         
+        embed = discord.Embed(title='🐛 Report', description='')
+        embed.add_field(name="Command", value=f"{ctx.command}", inline=False)
+        embed.add_field(name="Server", value=f"{ctx.guild.name}", inline=False)
+        embed.add_field(name="Channel", value=f"{ctx.channel.name}", inline=False)
+        embed.add_field(name="User", value=f"{ctx.author.name}", inline=False)
+        embed.add_field(name="Error", value=f"{error}", inline=False)
+        
         # Send SmolTygr a DM with information directly
-        await smolbot.smol_user.send(f'SmolBot error in "{ctx.command}"\n{ctx.guild.name} - {ctx.channel.name}\nCalled by "{ctx.author.name}"\n \n{error}')
+        await smolbot.smol_user.send('', embed=embed)
 
 
     smolbot.run(TOKEN, log_handler=None)

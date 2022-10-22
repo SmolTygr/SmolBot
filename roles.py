@@ -58,7 +58,6 @@ class Confirm(discord.ui.View):
 
 async def set_role(interaction, role_name):
     """Set a user role in a server"""
-    
     role = discord.utils.get(interaction.guild.roles, name=role_name)
     
     if role in interaction.user.roles:
