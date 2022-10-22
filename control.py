@@ -1,5 +1,6 @@
 from discord.ext import commands
 from discord import ChannelType
+import subprocess
 
 # Custom module import
 from log import log_command
@@ -46,6 +47,12 @@ class control(commands.Cog):
         """Ping smolbot to check its status"""
         log_command(ctx, self.bot.logger, 'ping')
         await ctx.message.add_reaction('👍')
+        
+    @commands.command()
+    @commands.check_any(_smoltygr_check())
+    async def update(self, ctx):
+        subprocess.Popen('./update.sh')
+        await ctx.message.send('I am shutting down and updating')
         
         
     @commands.command(aliases=['suggestion'])
