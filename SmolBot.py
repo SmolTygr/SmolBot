@@ -70,7 +70,7 @@ if __name__ == '__main__':
             
     @smolbot.event 
     async def on_mesage(message):
-        if message.content.contains('BirdySITFlower'):
+        if message.content.contains('1039537679882276904'):
             await message.channel.send("We don't allow that emote in here...")
             await message.delete()
             
