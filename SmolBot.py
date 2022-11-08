@@ -67,6 +67,13 @@ if __name__ == '__main__':
             raise RuntimeError('Oh no, it is borby')
         else:
             await ctx.message.reply('no! No borby command for you >:(')
+            
+    @smolbot.event 
+    async def on_mesage(message):
+        if message.content.contains('BirdySITFlower'):
+            await message.channel.send("We don't allow that emote in here...")
+            await message.delete()
+            
 
     @smolbot.event
     async def on_command_error(ctx, error):
