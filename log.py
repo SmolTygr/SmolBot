@@ -4,12 +4,9 @@ from logging import handlers
 import os
 
 # Logging Settings
-# TODO: Stop being hardcoded
 LOG_BACKUP_COUNT = 5
 LOG_NAME = 'smolLog.log'
-CONFIG_NAME = 'smolConfig.ini'
 DIR_ = os.path.dirname(__file__)
-
 
 def setup_logging() -> logging.Logger:
 
@@ -36,7 +33,6 @@ def setup_logging() -> logging.Logger:
     logger.addHandler(file)
 
     return logger
-
 
 #TODO: Rewrite as a wrapper function.
 def log_command(ctx, logger: logging.Logger, command_name: str, *, level: int = logging.DEBUG):
